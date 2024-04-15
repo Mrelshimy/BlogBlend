@@ -1,19 +1,25 @@
 from datetime import datetime
-from blog import db
+from blog import db, app, bcrypt
 
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), nullable=False)
+    username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     bio = db.Column(db.String(255), nullable=True)
-    avatar = db.Column(db.String(255), nullable=True)
+    avatar = db.Column(db.String(255), nullable=False, default='https://via.placeholder.com/150')
     posts = db.relationship('Post', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     comments = db.relationship('Comment', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     likes = db.relationship('Like', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
+
+    def set_password(self, password):
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -27,6 +33,7 @@ post_tag = db.Table('post_tag',
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    cover = db.Column(db.String(255), nullable=False, default='https://via.placeholder.com/800x400')
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
