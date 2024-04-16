@@ -1,0 +1,10 @@
+footer {
+    display: flex;
+    font-family: "kanit", sans-serif;
+    background-color: rgb(47,52,59);
+    vertical-align: middle;
+    justify-content: center;
+    color: white;
+    padding: .3%;
+    bottom: 0;
+}
