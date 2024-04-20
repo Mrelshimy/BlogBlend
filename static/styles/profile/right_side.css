@@ -1,0 +1,34 @@
+article {
+    font-family: kanit, sans-serif;
+    width: 80%;
+    margin-bottom: 5%;
+
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+article a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.5s ease;
+    margin: 0;
+}
+
+article a:hover {
+    color: rgb(255, 192, 192);
+}
+
+p.tag {
+    font-weight: 200;
+    color: grey;
+    padding: 0;
+    margin: 0;
+}
+
+p.post-breif {
+    font-weight: 300;
+    padding: 5px;
+    margin: 0;
+}
