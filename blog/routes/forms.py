@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from wtforms import StringField, PasswordField, EmailField, SubmitField, BooleanField
 from email_validator import validate_email, EmailNotValidError
-from blog.models import User
+from blog.models.models import User
 
 
 class RegistrationForm(FlaskForm):
@@ -18,7 +18,7 @@ class RegistrationForm(FlaskForm):
 
     def validate_email(self, email):
         try:
-            v = validate_email(email.data)
+            v = validate_email(email.data, check_deliverability=False)
             email.data = v.normalized
         except EmailNotValidError as e:
             raise ValidationError(str(e))
