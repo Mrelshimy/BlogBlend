@@ -40,3 +40,10 @@
         cursor: pointer;
     }
 }
+
+.bio {
+    font-family: kanit, sans-serif;
+    font-weight: 300;
+    padding-top: 2%;
+    text-align: center;
+}

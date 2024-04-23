@@ -55,3 +55,25 @@
     font-family: poppins, sans-serif;
     font-size: 18px;
 }
+
+.like {
+    background-image: url('../../images/like.png');
+    background-size: cover;
+    color: black;
+    cursor: pointer;
+    margin-top: 95px;
+    border: none;
+    height: 25px;
+    width: 25px;
+}
+
+.liked {
+    background-image: url('../../images/like-colored.png');
+    background-size: cover;
+    color: black;
+    cursor: pointer;
+    margin-top: 95px;
+    border: none;
+    height: 25px;
+    width: 25px;
+}
