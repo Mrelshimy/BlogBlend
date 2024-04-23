@@ -6,6 +6,7 @@ views_bp = Blueprint('views', __name__, url_prefix='/blog/api/v1')
 
 from blog.api.v1.views.users import *
 from blog.api.v1.views.posts import *
+from blog.api.v1.views.tags import *
 
 
 """
@@ -48,12 +49,14 @@ CheckList Done:
     # POST a POST BY user_id
     # http://127.0.0.1:5000/blog/api/v1/users/<user_id>/posts
     
+    # DONE GET TAGS BY specific post
+    # http://127.0.0.1:5000/blog/api/v1/posts/<int:post_id>/tags
+    
     # PUT a POST BY post_id
     # http://127.0.0.1:5000/blog/api/v1/posts/<post_id>
 
     # DELETE a POST BY post_id
     # http://127.0.0.1:5000/blog/api/v1/posts/<post_id>
-    
     
 """
 

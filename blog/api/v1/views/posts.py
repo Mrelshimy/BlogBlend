@@ -1,7 +1,8 @@
 from flask import jsonify, request, abort
+from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
-from blog.models import Post, User 
+from blog.models.models import Post, User, Tag
 
 
 """
@@ -14,6 +15,8 @@ CheckList Done:
         GET (Retrieve a specific post)
         PUT/PATCH (Update a post)
         DELETE (Delete a post)
+    /posts/tag_id
+        GET (Retrieve posts under tag)
 """
 
 
@@ -44,7 +47,10 @@ def get_posts_of_user(user_id):
     """Retrieve posts of specific user"""
     with app.app_context():
         user = db.get_or_404(User, user_id)
-        return jsonify(user.to_dict()['posts']), 200
+        if user is None:
+            abort(404, description=f'user id {user_id} not found')
+        posts = [p.to_dict() for p in user.posts]
+        return jsonify(posts), 200
 
 
 # DONE POST a POST BY user_id

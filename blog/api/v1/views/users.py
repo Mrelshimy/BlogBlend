@@ -1,7 +1,8 @@
 from flask import jsonify, request, abort
+from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
-from blog.models import User
+from blog.models.models import User
 
 
 """
