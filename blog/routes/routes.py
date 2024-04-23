@@ -1,8 +1,11 @@
 from flask import render_template, redirect, url_for, request
-from blog.routes.forms import RegistrationForm, LoginForm
+from blog.routes.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from blog.models.models import User
 from blog import app, db
 from flask_login import current_user, login_user, logout_user, login_required
+import os
+import secrets
+from PIL import Image
 
 
 @app.route('/')
@@ -49,6 +52,35 @@ def logout():
 @login_required
 def profile():
     return render_template('profile.html')
+
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
+    output_size = (150, 150)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_fn
+
+
+@app.route('/account')
+@login_required
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        current_user.username = form.username.data
+        current_user.avatar = save_picture(form.image.data)
+        db.session.commit()
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.email.data = current_user.email
+        form.username.data = current_user.username
+    image_file = url_for('static', filename='images/' + current_user.avatar)
+    return render_template('account.html', title='Account', form=form, image_file=image_file)
 
 
 if __name__ == '__main__':
