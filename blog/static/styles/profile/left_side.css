@@ -1,0 +1,49 @@
+.profile_image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.image {
+    width: 250px;
+    height: 250px;    
+    border-radius: 50%;
+    background-image: url('../../images/post_sample.jpg');
+    background-size: cover;
+}
+
+.profile_name {
+    width: 100%;
+    margin-top: 0;
+    padding-top: 0;
+    text-align: right;
+    h1 {
+        margin-top: 0;
+        padding: 0;
+        text-align: center;
+        height: 100%;
+        font-family: kanit, sans-serif;
+    }
+}
+
+#profile-pic {
+    display: none;
+}
+
+.file_upload {
+    font-family: kanit, sans-serif;
+    padding-top: 2%;
+    text-align: center;
+    label {
+        cursor: pointer;
+    }
+}
+
+.bio {
+    font-family: kanit, sans-serif;
+    font-weight: 300;
+    padding-top: 2%;
+    text-align: center;
+}

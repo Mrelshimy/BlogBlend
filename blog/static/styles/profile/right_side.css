@@ -1,0 +1,50 @@
+article {
+    font-family: kanit, sans-serif;
+    width: 80%;
+    margin-bottom: 5%;
+    margin-left: 20px;
+
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+article a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.5s ease;
+    margin: 0;
+}
+
+article a:hover {
+    color: rgb(255, 192, 192);
+}
+
+p.tag {
+    font-weight: 200;
+    color: grey;
+    padding: 0;
+    margin: 0;
+}
+
+p.post-breif {
+    font-weight: 300;
+    padding: 5px;
+    margin: 0;
+}
+
+a.new-post {
+    text-decoration: none;
+    position: fixed;
+    margin-top: 65vh;
+    margin-left: 50vw;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-family: kanit, sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+}
