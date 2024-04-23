@@ -29,6 +29,18 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<User {self.username}>'
+    
+    def to_dict(self):
+        """Editing the __dict__ representation of the object"""
+        dic = self.__dict__.copy()
+        dic["created_at"] = self.created_at.isoformat()
+        dic["updated_at"] = self.updated_at.isoformat()
+        dic['__class__'] = self.__class__.__name__
+        dic['posts'] = [post.to_dict() for post in self.posts]
+        del dic['password']
+        if '_sa_instance_state' in dic:
+            del dic['_sa_instance_state']
+        return dic
 
 
 post_tag = db.Table('post_tag',
@@ -52,6 +64,16 @@ class Post(db.Model, UserMixin):
 
     def __repr__(self):
         return f'<Post {self.title}>'
+
+    def to_dict(self):
+        """Editing the __dict__ representation of the object"""
+        dic = self.__dict__.copy()
+        dic["created_at"] = self.created_at.isoformat()
+        dic["updated_at"] = self.updated_at.isoformat()
+        dic['__class__'] = self.__class__.__name__
+        if '_sa_instance_state' in dic:
+            del dic['_sa_instance_state']
+        return dic
 
 
 class Comment(db.Model, UserMixin):
@@ -102,6 +124,14 @@ class Tag(db.Model, UserMixin):
 #     db.session.add(p1)
 #     p2 = Post(id=2, title='title', content='content2', user_id=u.id)
 #     db.session.add(p2)
+    # p3 = Post(id=3, title='title', content='content3', user_id=uu.id)
+    # db.session.add(p3)
+    # p4 = Post(id=4, title='title', content='content4', user_id=u.id)
+    # db.session.add(p4)
+    # db.session.commit()
+    
+    
+    
 #     c = Comment(id=1, content='content', user_id=u.id, post_id=p1.id)
 #     db.session.add(c)
     # l = Like(id=1, user_id=u.id, post_id=p1.id)
@@ -111,7 +141,6 @@ class Tag(db.Model, UserMixin):
     # p1.tags.append(t)
     # p2.tags.append(t)
 
-    # db.session.commit()
     # db.session.delete(p1)
     # db.session.commit()
     # x = db.session.get(User, 4)
