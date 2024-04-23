@@ -1,0 +1,46 @@
+header{
+    top: 0;
+    display: flex;
+    vertical-align: middle;
+    height: 80px;
+    margin: 0;
+    background-color: rgb(47,52,59);
+    position: sticky;
+    z-index: 1000;
+}
+
+a.logo {
+    text-decoration: none;
+    font-family: dancing script, cursive;
+    font-size: 150%;
+    color:white;
+    margin-top: 1.7%;
+    margin-left: 10%;
+}
+
+header nav {
+    margin-top: 1.1%;
+    margin-left: 60%;
+}
+
+header nav ul {
+    font-family: "kanit", sans-serif;
+    display: flex;
+    list-style-type: none;
+}
+
+header nav ul li {
+    margin-right: 15px;
+    text-decoration: none;
+
+    a {
+        text-decoration: none;
+        color: white;
+        margin-right: 10px;
+        transition: 0.3s ease;
+    }
+}
+
+header nav ul li a:hover {
+    color: rgb(255, 192, 192);
+}
