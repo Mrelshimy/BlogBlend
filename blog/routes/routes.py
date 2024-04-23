@@ -66,7 +66,7 @@ def save_picture(form_picture):
     return picture_fn
 
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
