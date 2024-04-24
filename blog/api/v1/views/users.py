@@ -1,7 +1,8 @@
 from flask import jsonify, request, abort
+from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
-from blog.models import User
+from blog.models.models import User
 
 
 """
@@ -13,7 +14,7 @@ CheckList Done:
     PUT/PATCH (Update a user)
 """
 
-# DONE GET ALL USERS
+# GET ALL USERS
 # http://127.0.0.1:5000/blog/api/v1/users/
 @views_bp.route('/users', methods=['GET'], strict_slashes=False)
 def get_users():
@@ -24,7 +25,7 @@ def get_users():
         return jsonify(data), 200
 
 
-# DONE GET A SPECIFIC USER BY user_id
+# GET A SPECIFIC USER BY user_id
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>
 @views_bp.route('/users/<int:user_id>', methods=['GET'], strict_slashes=False)
 def get_user(user_id):
@@ -34,7 +35,7 @@ def get_user(user_id):
         return jsonify(user.to_dict()), 200
 
 
-# DONE CREATE A USER
+# CREATE A USER
 # http://127.0.0.1:5000/blog/api/v1/users
 @views_bp.route('/users', methods=['POST'], strict_slashes=False)
 def create_user():
@@ -56,7 +57,7 @@ def create_user():
             abort(400, 'Not a JSON')
 
 
-# DONE UPDATE A USER
+# UPDATE A USER
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>
 @views_bp.route('/users/<int:user_id>', methods=['PUT'], strict_slashes=False)
 def edit_user(user_id):
@@ -75,7 +76,7 @@ def edit_user(user_id):
             abort(400, "Not a JSON")
 
 
-# DONE DELETE A USER
+# DELETE A USER
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>
 @views_bp.route('/users/<int:user_id>', methods=['DELETE'], strict_slashes=False)
 def delete_user(user_id):
