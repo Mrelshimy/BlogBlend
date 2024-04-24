@@ -11,7 +11,8 @@ Need:
     GET posts under specific tag
 """
 
-# DONE GET TAGS of specific post
+
+# GET TAGS of specific post
 # http://127.0.0.1:5000/blog/api/v1/posts/<int:post_id>/<str:tag_name>
 @views_bp.route('/posts/<int:post_id>/tags', methods=['GET'], strict_slashes=False)
 def get_tags_of_post(post_id):
@@ -24,7 +25,7 @@ def get_tags_of_post(post_id):
         return jsonify(tags), 200
 
 
-# DONE GET POSTS of specific tag
+# GET POSTS of specific tag
 # http://127.0.0.1:5000/blog/api/v1/tags/<string:tag_name>/posts
 @views_bp.route('/tags/<string:tag_name>/posts', methods=['GET'], strict_slashes=False)
 def get_posts_of_tag(tag_name):
@@ -35,3 +36,4 @@ def get_posts_of_tag(tag_name):
             abort(404, description=f'{tag_name} not found')
         posts = [p.to_dict() for p in tag.posts]
         return jsonify(posts), 200
+

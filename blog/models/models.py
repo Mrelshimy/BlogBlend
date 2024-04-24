@@ -4,10 +4,9 @@ from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
 
 
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return db.session.query(User).get(int(user_id))
-
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.query(User).get(int(user_id))
 
 class User(db.Model, UserMixin, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,8 +20,8 @@ class User(db.Model, UserMixin, SerializerMixin):
     posts = db.relationship('Post', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # comments = db.relationship('Comment', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # likes = db.relationship('Like', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
-    
-    serialize_rules = ('-posts', '-comments', '-likes')
+
+    serialize_rules = ('-posts', '-comments', '-likes', '-password')
 
     def set_password(self, password):
         self.password = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -65,7 +64,7 @@ class Tag(db.Model, UserMixin, SerializerMixin):
     posts = db.relationship('Post', secondary=post_tag, back_populates='tags', lazy=True)
 
     serialize_rules = ('-posts',)
-    
+
     def __repr__(self):
         return f'<Tag {self.name}>'
 
@@ -108,13 +107,13 @@ with app.app_context():
 
     db.session.commit()
 
-    print(post1.tags)
-    print(post2.tags)
-    print(tag1.posts)
-    print(tag2.posts)
-    print(tag3.posts)
-    print(tag4.posts)
-
+    # print(post1.tags)
+    # print(post2.tags)
+    # print(tag1.posts)
+    # print(tag2.posts)
+    # print(tag3.posts)
+    # print(tag4.posts)
+    
 
 # class Comment(db.Model, UserMixin):
 #     id = db.Column(db.Integer, primary_key=True)

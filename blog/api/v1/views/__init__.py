@@ -48,15 +48,19 @@ CheckList Done:
 
     # POST a POST BY user_id
     # http://127.0.0.1:5000/blog/api/v1/users/<user_id>/posts
-    
-    # DONE GET TAGS BY specific post
-    # http://127.0.0.1:5000/blog/api/v1/posts/<int:post_id>/tags
-    
+
     # PUT a POST BY post_id
     # http://127.0.0.1:5000/blog/api/v1/posts/<post_id>
 
     # DELETE a POST BY post_id
     # http://127.0.0.1:5000/blog/api/v1/posts/<post_id>
+  
+  
+    >>>> Tags
+    -----------------
+    # GET TAGS of specific post
+    # http://127.0.0.1:5000/blog/api/v1/posts/<int:post_id>/<str:tag_name>
     
+    # GET POSTS of specific tag
+    # http://127.0.0.1:5000/blog/api/v1/tags/<string:tag_name>/posts
 """
-
