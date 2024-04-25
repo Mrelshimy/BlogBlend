@@ -131,6 +131,7 @@ class Like(db.Model, UserMixin):
 #     post4.tags.append(tag4)
 #     post4.tags.append(tag1)
 
+
 #     db.session.commit()
 
 #     # print(post1.tags)
@@ -149,4 +150,3 @@ class Like(db.Model, UserMixin):
     # x = db.session.get(User, 4)
     # x.username = 'sameh123'
     # print(x)
-

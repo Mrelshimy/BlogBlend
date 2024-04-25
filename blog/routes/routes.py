@@ -53,6 +53,10 @@ def logout():
 def profile():
     return render_template('profile.html')
 
+@app.route('/articles')
+def articles():
+    return render_template('articles.html')
+
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
