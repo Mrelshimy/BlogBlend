@@ -1,11 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $('article').hover(
-    function() {
+    function () {
       if ($(this).find('p').length === 0) {
-        $(this).find('div.article_img a').append('<p class="hover-tag">Tag</p>');
+        $(this)
+          .find('div.article_img a')
+          .append('<p class="hover-tag">Tag</p>');
       }
     },
-    function() {
+    function () {
       $(this).find('div.article_img a p').remove();
     }
   );
