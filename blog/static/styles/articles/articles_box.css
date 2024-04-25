@@ -33,9 +33,9 @@ a.article_header {
 }
 
 p.hover-tag {
-    color: black;
+    color: grey;
     font-family: kanit, sans-serif;
-    font-size: 50px;
+    font-size: 30px;
     margin: 0;
     padding-top: 40%;
     text-align: center;

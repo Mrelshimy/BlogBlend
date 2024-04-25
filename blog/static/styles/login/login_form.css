@@ -9,7 +9,7 @@ form {
     margin-top: 20vh;
 }
 
-form input[type="text"], form input[type="password"] {
+.form-control {
     margin: 5px;
     padding: 20px;
     border-radius: 10px;
@@ -49,8 +49,4 @@ input[type="submit"]:hover {
 
 input[type="submit"]:active {
     background-color: #4a2f8f;
-}
-
-.remember-me {
-    color: grey;
 }

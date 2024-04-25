@@ -11,14 +11,61 @@
 </head>
 <body>
     <div class="left_side"></div>
-    <form action="/register" method="POST" enctype="multipart/form-data">
-        <!-- <h1 id="logo">BlogBlend</h1> -->
+    <form method="POST" action="">
         <h1>Register</h1>
-        <div><input type="email" id="email" name="email"  placeholder="Email" required></div>
-        <div><input type="text" id="username" name="username" placeholder="Username"required></div>
-        <div><input type="password" id="password" name="password"  placeholder="Password"></div>
-        <div><input type="password" id="password" name="password"  placeholder="Confirm Password"></div>
-        <div><input type="submit" value="Register"></div>
+        {{ form.hidden_tag() }}
+            <div class="form-group">
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {% if form.password2.errors %}
+                    {{ form.password2(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password2.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password2(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
     </form>
+
 </body>
 </html>
