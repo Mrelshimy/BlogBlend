@@ -69,78 +69,76 @@ class Tag(db.Model, UserMixin, SerializerMixin):
         return f'<Tag {self.name}>'
 
 
-with app.app_context():
-    db.drop_all()
-    db.create_all()
+class Comment(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user = db.relationship('User', back_populates='comments', lazy=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
+    post = db.relationship('Post', back_populates='comments', lazy=True)
+
+    def __repr__(self):
+        return f'<Comment {self.id}>'
+
+
+class Like(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user = db.relationship('User', back_populates='likes', lazy=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
+    post = db.relationship('Post', back_populates='likes', lazy=True)
+
+    def __repr__(self):
+        return f'<Like {self.id}>'
+
+
+# with app.app_context():
+#     db.drop_all()
+#     db.create_all()
     
-    user1 = User(id=1, username='user1', email='user1@one.com', password='pass1')
-    db.session.add(user1)
-    post1 = Post(id=1, title='title1', content='content1', user_id=user1.id)
-    db.session.add(post1)
-    post2 = Post(id=2, title='title2', content='content2', user_id=user1.id)
-    db.session.add(post2)
+#     user1 = User(id=1, username='user1', email='user1@one.com', password='pass1')
+#     db.session.add(user1)
+#     post1 = Post(id=1, title='title1', content='content1', user_id=user1.id)
+#     db.session.add(post1)
+#     post2 = Post(id=2, title='title2', content='content2', user_id=user1.id)
+#     db.session.add(post2)
     
-    user2 = User(id=2, username='user2', email='user2@two.com', password='pass2')
-    db.session.add(user2)
-    post3 = Post(id=3, title='title3', content='content3', user_id=user2.id)
-    db.session.add(post3)
-    post4 = Post(id=4, title='title4', content='content4', user_id=user2.id)
-    db.session.add(post4)
+#     user2 = User(id=2, username='user2', email='user2@two.com', password='pass2')
+#     db.session.add(user2)
+#     post3 = Post(id=3, title='title3', content='content3', user_id=user2.id)
+#     db.session.add(post3)
+#     post4 = Post(id=4, title='title4', content='content4', user_id=user2.id)
+#     db.session.add(post4)
     
-    tag1 = Tag(id=1, name='tag1')
-    db.session.add(tag1)
-    tag2 = Tag(id=2, name='tag2')
-    db.session.add(tag2)
-    tag3 = Tag(id=3, name='tag3')
-    db.session.add(tag3)
-    tag4 = Tag(id=4, name='tag4')
-    db.session.add(tag4)
+#     tag1 = Tag(id=1, name='tag1')
+#     db.session.add(tag1)
+#     tag2 = Tag(id=2, name='tag2')
+#     db.session.add(tag2)
+#     tag3 = Tag(id=3, name='tag3')
+#     db.session.add(tag3)
+#     tag4 = Tag(id=4, name='tag4')
+#     db.session.add(tag4)
 
-    post1.tags.append(tag1)
-    post1.tags.append(tag2)
-    post2.tags.append(tag2)
-    post2.tags.append(tag3)
-    post3.tags.append(tag3)
-    post3.tags.append(tag4)
-    post4.tags.append(tag4)
-    post4.tags.append(tag1)
+#     post1.tags.append(tag1)
+#     post1.tags.append(tag2)
+#     post2.tags.append(tag2)
+#     post2.tags.append(tag3)
+#     post3.tags.append(tag3)
+#     post3.tags.append(tag4)
+#     post4.tags.append(tag4)
+#     post4.tags.append(tag1)
 
-    db.session.commit()
+#     db.session.commit()
 
-    # print(post1.tags)
-    # print(post2.tags)
-    # print(tag1.posts)
-    # print(tag2.posts)
-    # print(tag3.posts)
-    # print(tag4.posts)
-    
-
-# class Comment(db.Model, UserMixin):
-#     id = db.Column(db.Integer, primary_key=True)
-#     content = db.Column(db.Text, nullable=False)
-#     created_at = db.Column(db.DateTime, default=datetime.now)
-#     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
-#     user = db.relationship('User', back_populates='comments', lazy=True)
-#     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
-#     post = db.relationship('Post', back_populates='comments', lazy=True)
-
-#     def __repr__(self):
-#         return f'<Comment {self.id}>'
-
-
-# class Like(db.Model, UserMixin):
-#     id = db.Column(db.Integer, primary_key=True)
-#     created_at = db.Column(db.DateTime, default=datetime.now)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
-#     user = db.relationship('User', back_populates='likes', lazy=True)
-#     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
-#     post = db.relationship('Post', back_populates='likes', lazy=True)
-
-#     def __repr__(self):
-#         return f'<Like {self.id}>'
-
-
+#     # print(post1.tags)
+#     # print(post2.tags)
+#     # print(tag1.posts)
+#     # print(tag2.posts)
+#     # print(tag3.posts)
+#     # print(tag4.posts)
 
     # c = Comment(id=1, content='content', user_id=u.id, post_id=p1.id)
     # db.session.add(c)

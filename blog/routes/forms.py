@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
-from wtforms import StringField, PasswordField, EmailField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, EmailField, SubmitField, BooleanField, TextAreaField, HiddenField
 from email_validator import validate_email, EmailNotValidError
 from blog.models.models import User
 
@@ -58,3 +58,22 @@ class UpdateAccountForm(FlaskForm):
             u = User.query.filter_by(username=username.data).first()
             if u:
                 raise ValidationError('That username is taken. Please choose a different one.')
+
+
+# class CreatePostForm(FlaskForm):
+#     title = StringField('Title', validators=[DataRequired()], render_kw={'placeholder': 'title of the post'})
+#     content = TextAreaField('Content', validators=[DataRequired()], render_kw={'placeholder': 'title of the post'})
+#     tags = StringField('Tags', render_kw={'placeholder': 'comma-separated tags'})  # New tags field
+#     post_image = FileField('Post Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+#     post_id = HiddenField()
+#     submit = SubmitField('Post')
+
+
+# class CommentForm(FlaskForm):
+#     content = TextAreaField('Content', validators=[DataRequired()], render_kw={'placeholder': 'content of the comment'})
+#     submit = SubmitField('Comment')
+
+
+# class LikeForm(FlaskForm):
+#     post_id = HiddenField()
+#     submit = SubmitField('Like')
