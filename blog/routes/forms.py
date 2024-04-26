@@ -63,7 +63,7 @@ class UpdateAccountForm(FlaskForm):
 class CreateAndUpdatePostForm(FlaskForm):
     title = StringField('Title', render_kw={'placeholder': 'title of the post'})
     content = TextAreaField('Content', render_kw={'placeholder': 'content of the post'})
-    tags = StringField('Tags', render_kw={'placeholder': 'comma-separated tags'})  # New tags field
+    tags = StringField('Tags', render_kw={'placeholder': 'space-separated tags'})  # New tags field
     post_image = FileField('Post Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
 
