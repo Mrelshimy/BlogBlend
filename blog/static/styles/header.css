@@ -1,54 +1,54 @@
-header{
-    padding: 20px 0;
-    background-image: url('../images/header_bg.jpg');
-    background-size: cover;
-    margin: 0;
-    margin-bottom: 100px;
-    height: 100vh;
+header {
+  padding: 20px 0;
+  background-image: url('../images/header_bg.jpg');
+  background-size: cover;
+  margin: 0;
+  margin-bottom: 100px;
+  height: 100vh;
 }
 
 header nav {
-    font-family: kanit, sans-serif;
-    font-size: 25px;
-    margin-left: 70%;
+  font-family: kanit, sans-serif;
+  font-size: 25px;
+  margin-left: 70%;
 }
 
 header nav ul {
-    display: flex;
-    list-style-type: none;
+  display: flex;
+  list-style-type: none;
 }
 
 header nav ul li {
-    margin-right: 15px;
-    text-decoration: none;
+  margin-right: 15px;
+  text-decoration: none;
 
-    a {
-        text-decoration: none;
-        color: white;
-        margin-right: 10px;
-        font-size: 16px;
-        transition: 0.3s ease;
-    }
+  a {
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+    font-size: 16px;
+    transition: 0.3s ease;
+  }
 }
 
 header nav ul li a:hover {
-    color: rgb(255, 192, 192);
+  color: rgb(255, 192, 192);
 }
 
 header h1 {
-    font-family: dancing script, cursive;
-    font-size: 700%;
-    color: rgb(255, 255, 255);
-    margin-left: 60%;
+  font-family: dancing script, cursive;
+  font-size: 700%;
+  color: rgb(255, 255, 255);
+  margin-left: 60%;
 }
 
 header h2 {
-    font-family: dancing script, cursive;
-    font-size: 180%;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    margin-top: -5%;
-    margin-left: 45%;
+  font-family: dancing script, cursive;
+  font-size: 180%;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-top: -5%;
+  margin-left: 45%;
 }
 
 .scrolled {
@@ -61,24 +61,24 @@ header h2 {
   width: 100%;
   margin-left: 0;
   height: 70px;
-  background-color: rgb(47,52,59);
+  background-color: rgb(47, 52, 59);
 }
 
 .scrolled_list {
-    margin-top: 1%;
-    margin-right: 30%;
-    z-index: 1000;
-    margin-left: 50%;
+  margin-top: 1%;
+  margin-right: 30%;
+  z-index: 1000;
+  margin-left: 50%;
 }
 
 .scrolled_li {
-    color:white;
+  color: white;
 }
 
 a.logo {
-    text-decoration: none;
-    font-family: dancing script, cursive;
-    color:white;
-    margin-top: 1.5%;
-    margin-left: 10%;
+  text-decoration: none;
+  font-family: dancing script, cursive;
+  color: white;
+  margin-top: 1.5%;
+  margin-left: 10%;
 }

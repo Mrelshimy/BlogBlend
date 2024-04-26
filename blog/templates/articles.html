@@ -1,40 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <link rel="stylesheet" href="../static/styles/body.css">
-    <link rel="stylesheet" href="../static/styles/footer.css">
-    <link rel="stylesheet" href="../static/styles/articles/header.css">
-    <link rel="stylesheet" href="../static/styles/articles/container.css">
-    <link rel="stylesheet" href="../static/styles/articles/articles_box.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/body.css" />
+    <link rel="stylesheet" href="../static/styles/footer.css" />
+    <link rel="stylesheet" href="../static/styles/articles/header.css" />
+    <link rel="stylesheet" href="../static/styles/articles/container.css" />
+    <link rel="stylesheet" href="../static/styles/articles/articles_box.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../static/scripts/articles/articles.js"></script>
     <title>BlogBlend - Articles</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <a href="http://localhost:5000" class="logo"><strong>BlogBlend</strong></a>
-        <nav class="navbar">
-            <ul>
-                <li><a href="http://localhost:5000"><strong>Home</strong></a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="http://localhost:5000/profile"><strong>Profile</strong></a></li>
-                    <li><a href="http://localhost:5000/logout"><strong>Logout</strong></a></li>
-                {% else %}
-                    <li><a href="http://localhost:5000/login"><strong>Login</strong></a></li>
-                    <li><a href="http://localhost:5000/register"><strong>Register</strong></a></li>
-                {% endif %}
-            </ul>
-        </nav>
+      <a href="http://localhost:5000" class="logo"
+        ><strong>BlogBlend</strong></a
+      >
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="http://localhost:5000"><strong>Home</strong></a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="http://localhost:5000/profile"><strong>Profile</strong></a>
+          </li>
+          <li>
+            <a href="http://localhost:5000/logout"><strong>Logout</strong></a>
+          </li>
+          {% else %}
+          <li>
+            <a href="http://localhost:5000/login"><strong>Login</strong></a>
+          </li>
+          <li>
+            <a href="http://localhost:5000/register"
+              ><strong>Register</strong></a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
     </header>
-    <div class="container">
-    </div>
+    <div class="container"></div>
     <footer>
-        <p><strong>BlogBlend - 2024</strong></p>
+      <p><strong>BlogBlend - 2024</strong></p>
     </footer>
-</body>
+  </body>
 </html>
