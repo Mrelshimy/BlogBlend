@@ -32,9 +32,9 @@ $(document).ready(function () {
               </div>
               <div class="post_data">
                 <div class="tag">${post.tag}</div>
-                <a href="#"><strong>${post.title}</strong></a>
+                <a href="#"><strong>${post.title.charAt(0).toUpperCase() + post.title.slice(1)}</strong></a>
                 <p class="date">${post.created_at}</p>
-                <p class="owner"><strong>${userName}</strong></p>
+                <p class="owner"><strong>${userName.charAt(0).toUpperCase() + userName.slice(1)}</strong></p>
                 </div>
             </article>`);
       });

@@ -15,7 +15,7 @@ $(document).ready(function () {
               <a href="http://localhost:5000/post/${post.id}" style="background-image: url('${post.cover}')"></a>
             </div>
             <div class="article_data">
-              <a href="http://localhost:5000/post/${post.id}" class="article_header">${post.title}</a>
+              <a href="http://localhost:5000/post/${post.id}" class="article_header">${post.title.charAt(0).toUpperCase() + post.title.slice(1)}</a>
             </div>
           </article>`);
 
