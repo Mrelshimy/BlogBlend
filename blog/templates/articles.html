@@ -17,11 +17,17 @@
 </head>
 <body>
     <header>
-        <a href="#" class="logo"><strong>BlogBlend</strong></a>
+        <a href="http://localhost:5000" class="logo"><strong>BlogBlend</strong></a>
         <nav class="navbar">
             <ul>
                 <li><a href="http://localhost:5000"><strong>Home</strong></a></li>
-                <li><a href="http://localhost:5000/login"><strong>Login</strong></a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="http://localhost:5000/profile"><strong>Profile</strong></a></li>
+                    <li><a href="http://localhost:5000/logout"><strong>Logout</strong></a></li>
+                {% else %}
+                    <li><a href="http://localhost:5000/login"><strong>Login</strong></a></li>
+                    <li><a href="http://localhost:5000/register"><strong>Register</strong></a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

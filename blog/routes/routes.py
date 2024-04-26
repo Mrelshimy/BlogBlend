@@ -54,6 +54,10 @@ def profile():
 def articles():
     return render_template('articles.html')
 
+@app.route('/posts/<post_id>')
+def post(post_id):
+    return render_template('post.html', post_id=post_id)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

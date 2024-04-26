@@ -9,14 +9,18 @@
     <link rel="stylesheet" href="../static/styles/profile/left_side.css">
     <link rel="stylesheet" href="../static/styles/profile/right_side.css">
     <link rel="stylesheet" href="../static/styles/profile/header.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script> let currentUser = '{{ current_user.id }}'; </script>
+    <script src="../static/scripts/profile/profile.js"></script>
     <title>BlogBlend - Profile</title>
 </head>
 <body>
     <header>
-        <a href="#" class="logo"><strong>BlogBlend</strong></a>
+        <a href="http://localhost:5000/" class="logo"><strong>BlogBlend</strong></a>
         <nav class="navbar">
             <ul>
                 <li><a href="http://localhost:5000"><strong>Home</strong></a></li>
+                <li><a href="http://localhost:5000/articles"><strong>Articles</strong></a></li>
                 <li><a href="http://localhost:5000/logout"><strong>Logout</strong></a></li>
             </ul>
         </nav>
@@ -30,44 +34,12 @@
                 <input type="file" id="profile-pic" name="profile-pic">
             </div>
             <div class="profile_name">
-                <h1>Nour Eldean Elkhateab</h1>
+                <h1></h1>
             </div>
-            <div class="bio">
-                Bio for user Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem ipsum quas quaerat dolor libero eligendi at tenetur, consectetur fugit distinctio excepturi voluptatum consequuntur temporibus pariatur et sit, architecto, id natus?
-            </div>
+            <div class="bio"></div>
         </div>
         <div class="right_side">
             <a href="#" class="new-post">New Post</a>
-            <article>
-                <h1><a href="#">Article title</a></h1>
-                <p class="tag">Tag</p>
-                <p class="post-breif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut nulla, tempora veniam adipisci alias doloribus accusantium!</p>
-            </article>
-            <article>
-                <h1><a href="#">Article title</a></h1>
-                <p class="tag">Tag</p>
-                <p class="post-breif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut nulla, tempora veniam adipisci alias doloribus accusantium!</p>
-            </article>
-            <article>
-                <h1><a href="#">Article title</a></h1>
-                <p class="tag">Tag</p>
-                <p class="post-breif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut nulla, tempora veniam adipisci alias doloribus accusantium!</p>
-            </article>
-            <article>
-                <h1><a href="#">Article title</a></h1>
-                <p class="tag">Tag</p>
-                <p class="post-breif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut nulla, tempora veniam adipisci alias doloribus accusantium!</p>
-            </article>
-            <article>
-                <h1><a href="#">Article title</a></h1>
-                <p class="tag">Tag</p>
-                <p class="post-breif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut nulla, tempora veniam adipisci alias doloribus accusantium!</p>
-            </article>
-            <article>
-                <h1><a href="#">Article title</a></h1>
-                <p class="tag">Tag</p>
-                <p class="post-breif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ut nulla, tempora veniam adipisci alias doloribus accusantium!</p>
-            </article>
         </div>
     </div>
     </form>
