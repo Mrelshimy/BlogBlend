@@ -21,7 +21,13 @@
             <ul>
                 <li><a href="#"><strong>Home</strong></a></li>
                 <li><a href="http://localhost:5000/articles"><strong>Articles</strong></a></li>
-                <li><a href="http://localhost:5000/login"><strong>Login</strong></a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="http://localhost:5000/profile"><strong>Profile</strong></a></li>
+                    <li><a href="http://localhost:5000/logout"><strong>Logout</strong></a></li>
+                {% else %}
+                    <li><a href="http://localhost:5000/login"><strong>Login</strong></a></li>
+                    <li><a href="http://localhost:5000/register"><strong>Register</strong></a></li>
+                {% endif %}
             </ul>
         </nav>
     <h1><strong>BlogBlend</strong></h1>
