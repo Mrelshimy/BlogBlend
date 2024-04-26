@@ -1,5 +1,5 @@
 $(document).ready(function () {
-<<<<<<< HEAD
+
   $.ajax({
     method: 'GET',
     url: 'http://localhost:5001/blog/api/v1/posts/',
@@ -30,18 +30,6 @@ $(document).ready(function () {
           }
         );
       });
-=======
-  $('article').hover(
-    function () {
-      if ($(this).find('p').length === 0) {
-        $(this)
-          .find('div.article_img a')
-          .append('<p class="hover-tag">Tag</p>');
-      }
-    },
-    function () {
-      $(this).find('div.article_img a p').remove();
->>>>>>> api
     }
   });
 });
