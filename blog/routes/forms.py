@@ -60,13 +60,12 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('That username is taken. Please choose a different one.')
 
 
-# class CreatePostForm(FlaskForm):
-#     title = StringField('Title', validators=[DataRequired()], render_kw={'placeholder': 'title of the post'})
-#     content = TextAreaField('Content', validators=[DataRequired()], render_kw={'placeholder': 'title of the post'})
-#     tags = StringField('Tags', render_kw={'placeholder': 'comma-separated tags'})  # New tags field
-#     post_image = FileField('Post Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
-#     post_id = HiddenField()
-#     submit = SubmitField('Post')
+class CreateAndUpdatePostForm(FlaskForm):
+    title = StringField('Title', render_kw={'placeholder': 'title of the post'})
+    content = TextAreaField('Content', render_kw={'placeholder': 'content of the post'})
+    tags = StringField('Tags', render_kw={'placeholder': 'comma-separated tags'})  # New tags field
+    post_image = FileField('Post Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    submit = SubmitField('Post')
 
 
 # class CommentForm(FlaskForm):

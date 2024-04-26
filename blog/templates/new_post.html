@@ -23,16 +23,22 @@
     </header>
     <div class="container">
         <h1>New Post</h1>
-        <form action="/new_post" method="POST">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
             <div class="form-group">
                 <div class="file_upload">
                     <label for="profile-pic">Add Photo</label>
-                    <input type="file" id="post-pic" name="post-pic">
-                </div>
-                <input type="text" id="tag" name="tag" required placeholder="Tag"><br>
-                <input type="text" id="title" name="title" required placeholder="Post Title"><br>
-                <input type="text" id="post-text" name="post-text" required placeholder="Add Post Text">
-                <input type="submit" value="Post" class="post-button">
+<!--                    <input type="file" id="post-pic" name="post-pic">-->
+                    {{ form.post_image }}
+<!--                </div>-->
+<!--                <input type="text" id="tag" name="tag" required placeholder="Tag"><br>-->
+<!--                <input type="text" id="title" name="title" required placeholder="Post Title"><br>-->
+                {{ form.tags }}
+                {{ form.title }}
+                {{ form.content }}
+                {{ form.submit }}
+<!--                <input type="text" id="post-text" name="post-text" required placeholder="Add Post Text">-->
+<!--                <input type="submit" value="Post" class="post-button">-->
             </div>
         </form>
     </div>
