@@ -67,16 +67,23 @@ def get_posts_of_user(user_id):
 @views_bp.route('/users/<int:user_id>/posts', methods=['POST'], strict_slashes=False)
 def post_a_post(user_id):
     with app.app_context():
+        user = db.get_or_404(User, user_id)
         if request.is_json:
             data = request.get_json()
-            if 'title' not in data:
+            if 'title' not in data.keys():
                 abort(400, "title is missing")
-            if 'content' not in data:
+            if 'content' not in data.keys():
                 abort(400, "content is missing")
-            user = db.get_or_404(User, user_id)
-            post = Post(**data)
-            setattr(post, 'user_id', user_id)
-            user.posts.append(post)        
+            post = Post(user_id=user_id, title=data.get('title'), content=data.get('content'))
+            if data.get('cover'):
+                post.cover = data.get('cover')
+            for t in data.get('tags').split():
+                tag = db.session.query(Tag).filter(Tag.name == t).first()
+                if tag is None:
+                    tag = Tag(name=t)
+                    db.session.add(tag)
+                post.tags.append(tag)
+
             db.session.commit()
             return jsonify({'message': 'Post added successfully'}), 201
         else:
