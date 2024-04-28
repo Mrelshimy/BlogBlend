@@ -69,30 +69,30 @@ class Tag(db.Model, UserMixin, SerializerMixin):
         return f'<Tag {self.name}>'
 
 
-class Comment(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.now)
-    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
-    user = db.relationship('User', back_populates='comments', lazy=True)
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
-    post = db.relationship('Post', back_populates='comments', lazy=True)
+# class Comment(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     content = db.Column(db.Text, nullable=False)
+#     created_at = db.Column(db.DateTime, default=datetime.now)
+#     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+#     user = db.relationship('User', back_populates='comments', lazy=True)
+#     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
+#     post = db.relationship('Post', back_populates='comments', lazy=True)
 
-    def __repr__(self):
-        return f'<Comment {self.id}>'
+#     def __repr__(self):
+#         return f'<Comment {self.id}>'
 
 
-class Like(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime, default=datetime.now)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
-    user = db.relationship('User', back_populates='likes', lazy=True)
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
-    post = db.relationship('Post', back_populates='likes', lazy=True)
+# class Like(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     created_at = db.Column(db.DateTime, default=datetime.now)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+#     user = db.relationship('User', back_populates='likes', lazy=True)
+#     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
+#     post = db.relationship('Post', back_populates='likes', lazy=True)
 
-    def __repr__(self):
-        return f'<Like {self.id}>'
+#     def __repr__(self):
+#         return f'<Like {self.id}>'
 
 
 # with app.app_context():
