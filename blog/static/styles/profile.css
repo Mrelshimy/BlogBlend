@@ -1,0 +1,65 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: var(--first-background-color);
+  margin-bottom: 40px;
+}
+
+.header a {
+  font-size: x-large;
+}
+
+.header ul li {
+  display: inline-block;
+  margin-left: 30px;
+  font-size: x-large;
+}
+
+.header ul li:hover,
+.header a:hover {
+  color: var(--hover-text-color);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile img {
+  margin: 15px 0px 10px 0px;
+  width: 300px;
+  border-radius: 50%;
+}
+.profile h1 {
+  margin: 10px 0px 5px 0px;
+  font-size: xx-large;
+}
+.profile p {
+  margin-bottom: 10px;
+  font-size: large;
+}
+
+.profile .buttons {
+  display: flex;
+  margin-top: 25px;
+  gap: 25px;
+}
+
+.profile .buttons .new-button,
+.profile .buttons .edit-button {
+  background-color: var(--first-background-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+.profile .buttons .new-button {
+  background-color: seagreen;
+}
