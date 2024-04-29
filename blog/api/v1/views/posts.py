@@ -3,6 +3,9 @@ from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
 from blog.models.models import Post, User, Tag
+import secrets
+from PIL import Image
+import os
 
 
 """
@@ -62,25 +65,49 @@ def get_posts_of_user(user_id):
         return jsonify(posts), 200
 
 
+def save_picture(form_picture, w, h):
+    # Generating new name for the image and return it
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
+    output_size = (w, h)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_fn
+
 # POST a POST BY user_id
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>/posts
 @views_bp.route('/users/<int:user_id>/posts', methods=['POST'], strict_slashes=False)
 def post_a_post(user_id):
     with app.app_context():
-        if request.is_json:
-            data = request.get_json()
-            if 'title' not in data:
-                abort(400, "title is missing")
-            if 'content' not in data:
-                abort(400, "content is missing")
-            user = db.get_or_404(User, user_id)
-            post = Post(**data)
-            setattr(post, 'user_id', user_id)
-            user.posts.append(post)        
-            db.session.commit()
-            return jsonify({'message': 'Post added successfully'}), 201
+        user = db.get_or_404(User, user_id)
+        data = request.form
+        if 'title' not in data.keys():
+            abort(400, "title is missing")
+        if 'content' not in data.keys():
+            abort(400, "content is missing")
+        post = Post(user_id=user_id, title=data.get('title'), content=data.get('content'))
+
+        # HANDLE COVER
+        if 'image' not in request.files:
+            return 'No image part', 400
         else:
-            abort(400, 'Not a JSON')
+            image_obj = request.files['image']
+            cover = save_picture(image_obj, 800, 600)
+            post.cover = cover
+
+        # HANDLE TAGS
+        for t in data.get('tags').split():
+            tag = db.session.query(Tag).filter(Tag.name == t).first()
+            if tag is None:
+                tag = Tag(name=t)
+                db.session.add(tag)
+            post.tags.append(tag)
+        db.session.add(post)
+        db.session.commit()
+        return jsonify({'message': 'Post added successfully'}), 201
 
 
 # PUT a POST BY post_id
