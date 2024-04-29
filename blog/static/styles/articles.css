@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: var(--first-background-color);
+  margin-bottom: 40px;
+}
+
+.header a {
+  font-size: x-large;
+}
+
+.header ul li {
+  display: inline-block;
+  margin-left: 30px;
+  font-size: x-large;
+}
+
+.header ul li:hover,
+.header a:hover {
+  color: var(--hover-text-color);
+}
+
+.container {
+  width: 90%;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+.posts-section {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.posts-section .post {
+  width: 40%;
+}
+
+footer {
+  background-color: var(--first-background-color);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  margin-top: auto;
+}

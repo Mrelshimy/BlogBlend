@@ -1,75 +1,70 @@
-article.row{
-    font-family: poppins, sans-serif;
-    display: flex;
-    width: 100%;
-    height: 300px;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
+.posts-section {
+  width: 50%;
+}
+.post {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+  padding: 10px;
 }
 
-article div.post_img:hover, article div.post_data a:hover {
-    opacity: 0.8;
+.article_img {
+  width: 300px;
+  height: 80%;
+  align-self: center;
+  margin-right: 50px;
+  border-radius: 10px;
 }
 
-article div.post_img {
-    transition: opacity 0.3s ease;
-    height: 100%;
-    width: 40%;
-    margin-left: 15%;
+.user {
+  display: flex;
+  align-items: center;
 }
 
-#art1 .post_img a {
-    background-image: url('../images/post_sample.jpg');
-    background-size: cover;
-    border-radius: 5px;
-    display: block;
-    width: 100%;
-    height: 100%;
+.user img {
+  width: 50px;
+  border-radius: 50%;
+  padding-right: 10px;
 }
 
-#art2 .post_img a {
-    background-image: url('../images/post_sample2.jpg');
-    background-size: cover;
-    border-radius: 5px;
-    display: block;
-    width: 100%;
-    height: 100%;
+.user .user-name {
+  padding-left: 10px;
 }
 
-article div.post_data {
-    transition: opacity 0.3s ease;
-    height: 400px;
-    width: 25%;
-    margin-right: 10%;
-    margin-left: 20px;
-    padding-top: 10px;
+.article_data {
+  height: auto;
+  width: 100%;
 }
 
-article .tag {
-    margin-top: 10px;
-    font-size: 20px;
-    color: #333;
-    opacity: 50%;
-    margin-bottom: 15px;
+.title {
+  padding: 10px 0px 0px 0px;
 }
 
-article div.post_data a {
-    transition: opacity 0.3s ease;
-    text-align: left;
-    text-decoration: none;
-    font-size: 35px;
-    color: #333;
-    width: auto;
+.title h2 {
+  padding-right: 10px;
 }
 
-article div.post_data p.date {
-    margin-bottom: 2px;
-    color: #333;
-    font-size: 12px;   
+.title p {
+  padding: 10px 0px;
+  color: grey;
 }
 
-article div.post_data p.owner {
-    color: #333;
-    font-size: 15px;
-    margin-top: 0;
+.content {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  position: relative;
+}
+
+.content::after {
+  content: '..Read more';
+  position: absolute;
+  bottom: 0;
+  right: 7px;
+  background-color: white;
+  padding: 1px 2px;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--first-background-color);
 }
