@@ -10,14 +10,30 @@ article {
     }
 }
 
-article a {
+button {
+    margin-left: 5px;
+    border-style: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    font-family: poppins, sans-serif;
+    border-radius: 5px;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+    font-family: poppins, sans-serif;
+}
+
+article h1 a {
     text-decoration: none;
     color: black;
     transition: color 0.5s ease;
     margin: 0;
 }
 
-article a:hover {
+article h1 a:hover {
     color: rgb(255, 192, 192);
 }
 
