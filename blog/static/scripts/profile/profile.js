@@ -6,7 +6,7 @@ $(document).ready(function () {
         contentType: 'application/json',
         success: function (data) {
           data.forEach(post => {
-            posts[post.title] = post.id;
+            posts[post.title.charAt(0).toUpperCase() + post.title.slice(1)] = post.id;
             if (post.tag === undefined) {
               post.tag = '';
             }
@@ -38,7 +38,8 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.delete-btn', function () {
-        let postId = posts[$(this).parent().find('h1').text().charAt(0).toLowerCase() + $(this).parent().find('h1').text().slice(1)];
+        let postId = posts[$(this).parent().find('h1').text()];
+        console.log(posts)
         $.ajax({
           method: 'DELETE',
           url: `http://localhost:5001/blog/api/v1/posts/${postId}`,
