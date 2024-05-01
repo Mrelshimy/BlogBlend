@@ -38,9 +38,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.delete-btn', function () {
-      if ($(this).text() === 'Delete') {
-        let postId = posts[$(this).parent().find('h1').text()];
-        console.log('hello')
+        let postId = posts[$(this).parent().find('h1').text().charAt(0).toLowerCase() + $(this).parent().find('h1').text().slice(1)];
         $.ajax({
           method: 'DELETE',
           url: `http://localhost:5001/blog/api/v1/posts/${postId}`,
@@ -49,8 +47,6 @@ $(document).ready(function () {
             location.reload();
           }
         });
-      }
     });
 
 });
-
