@@ -40,3 +40,33 @@ $(document).ready(function () {
     },
   });
 });
+
+// Use this instead of the above to apply css correctly
+
+// <article class="post">
+//   <img
+//     class="article_img"
+//     src="../static/images/post_sample.jpg"
+//     alt="post image"
+//   />
+//   <div class="post-details">
+//     <div class="user">
+//       <img src="../static/images/channels4_profile.jpg" alt="User profile" />
+//       <h3 class="user-name">Writer name</h3>
+//     </div>
+//     <div class="article_data">
+//       <a href="#">
+//         <div class="title">
+//           <h2>article title</h2>
+//           <p>Written in 7, Oct 2023</p>
+//         </div>
+//         <p class="content">
+//           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates,
+//           nulla nostrum nisi debitis voluptatibus facere aspernatur? Lorem ipsum
+//           dolor, sit amet consectetur adipisicing elit. Voluptates, nulla
+//           nosre aspernatur? Lorem ipsuur?
+//         </p>
+//       </a>
+//     </div>
+//   </div>
+// </article>;
