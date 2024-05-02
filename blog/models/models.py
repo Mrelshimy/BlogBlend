@@ -16,7 +16,7 @@ class User(db.Model, UserMixin, SerializerMixin):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     bio = db.Column(db.String(255), nullable=True)
-    avatar = db.Column(db.String(255), nullable=False, default='https://via.placeholder.com/150')
+    avatar = db.Column(db.String(255), nullable=False, default='defaulte_profile.png')
     posts = db.relationship('Post', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # comments = db.relationship('Comment', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # likes = db.relationship('Like', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
@@ -33,40 +33,40 @@ class User(db.Model, UserMixin, SerializerMixin):
         return f'<User {self.username}>'
 
 
-post_tag = db.Table('post_tag',
-    db.Column('post_id', db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), primary_key=True),
-    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
-)
+# post_tag = db.Table('post_tag',
+#     db.Column('post_id', db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), primary_key=True),
+#     db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+# )
 
 
 class Post(db.Model, UserMixin, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
-    cover = db.Column(db.String(255), nullable=False, default='https://via.placeholder.com/800x400')
+    cover = db.Column(db.String(255), nullable=False, default='defaulte_cover.png')
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', back_populates='posts', lazy=True)
-    tags = db.relationship('Tag', secondary=post_tag, back_populates='posts', lazy=True)
+    # tags = db.relationship('Tag', secondary=post_tag, back_populates='posts', lazy=True)
     # comments = db.relationship('Comment', back_populates='post', lazy=True, cascade='all, delete')
     # likes = db.relationship('Like', back_populates='post', lazy=True, cascade='all, delete')
-    
+
     serialize_rules = ('-user', '-tags' ,'-comments', '-likes')
 
     def __repr__(self):
         return f'<Post {self.title}>'
 
 
-class Tag(db.Model, UserMixin, SerializerMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), nullable=False)
-    posts = db.relationship('Post', secondary=post_tag, back_populates='tags', lazy=True)
-
-    serialize_rules = ('-posts',)
-
-    def __repr__(self):
-        return f'<Tag {self.name}>'
+# class Tag(db.Model, UserMixin, SerializerMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(255), nullable=False)
+#     posts = db.relationship('Post', secondary=post_tag, back_populates='tags', lazy=True)
+#
+#     serialize_rules = ('-posts',)
+#
+#     def __repr__(self):
+#         return f'<Tag {self.name}>'
 
 
 # class Comment(db.Model, UserMixin):
@@ -78,11 +78,11 @@ class Tag(db.Model, UserMixin, SerializerMixin):
 #     user = db.relationship('User', back_populates='comments', lazy=True)
 #     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
 #     post = db.relationship('Post', back_populates='comments', lazy=True)
-
+#
 #     def __repr__(self):
 #         return f'<Comment {self.id}>'
-
-
+#
+#
 # class Like(db.Model, UserMixin):
 #     id = db.Column(db.Integer, primary_key=True)
 #     created_at = db.Column(db.DateTime, default=datetime.now)
@@ -90,7 +90,7 @@ class Tag(db.Model, UserMixin, SerializerMixin):
 #     user = db.relationship('User', back_populates='likes', lazy=True)
 #     post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
 #     post = db.relationship('Post', back_populates='likes', lazy=True)
-
+#
 #     def __repr__(self):
 #         return f'<Like {self.id}>'
 
@@ -98,7 +98,7 @@ class Tag(db.Model, UserMixin, SerializerMixin):
 # with app.app_context():
 #     db.drop_all()
 #     db.create_all()
-    
+#
 #     user1 = User(id=1, username='user1', email='user1@one.com', password='pass1')
 #     db.session.add(user1)
 #     post1 = Post(id=1, title='title1', content='content1', user_id=user1.id)

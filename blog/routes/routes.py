@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request, abort
 from blog.routes.forms import RegistrationForm, LoginForm, UpdateAccountForm, CreateAndUpdatePostForm
-from blog.models.models import User, Post, Tag, post_tag
+from blog.models.models import User, Post
 from blog import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 import os
@@ -75,28 +75,31 @@ def save_picture(form_picture, w, h):
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        current_user.email = form.email.data
+        # current_user.email = form.email.data
         current_user.username = form.username.data
         if form.image.data:
+            avatar_path = app.root_path + '/static/images/' + current_user.avatar
+            if os.path.exists(avatar_path):
+                os.remove(avatar_path)
             current_user.avatar = save_picture(form.image.data, 150, 150)
         db.session.commit()
-        return redirect(url_for('account'))
+        return redirect(url_for('home'))
     elif request.method == 'GET':
-        form.email.data = current_user.email
+        # form.email.data = current_user.email
         form.username.data = current_user.username
-    image_file = url_for('static', filename='images/' + current_user.avatar)
-    return render_template('account.html', title='Account', form=form, image_file=image_file)
+    # image_file = url_for('static', filename='images/' + current_user.avatar)
+    return render_template('account.html', title='Account', form=form)
 
 
-def create_tags_post(post, tags_in_post):
-    for tag in str(tags_in_post).split():
-        if not Tag.query.filter_by(name=tag).first():
-            t = Tag(name=tag)
-            db.session.add(t)
-        else:
-            t = Tag.query.filter_by(name=tag).first()
-        post.tags.append(t)
-    db.session.commit()
+# def create_tags_post(post, tags_in_post):
+#     for tag in str(tags_in_post).split():
+#         if not Tag.query.filter_by(name=tag).first():
+#             t = Tag(name=tag)
+#             db.session.add(t)
+#         else:
+#             t = Tag.query.filter_by(name=tag).first()
+#         post.tags.append(t)
+#     db.session.commit()
 
 
 @app.route('/post/create', methods=['GET', 'POST'])
@@ -107,11 +110,11 @@ def create_post():
         if form.post_image.data:
             cover = save_picture(form.post_image.data, 800, 600)
         else:
-            cover = 'https://via.placeholder.com/800x400'
+            cover = 'default_cover.png'
         p = Post(title=form.title.data, content=form.content.data, cover=cover, user_id=current_user.id)
         db.session.add(p)
-        if form.tags.data:
-            create_tags_post(p, form.tags.data)
+        # if form.tags.data:
+        #     create_tags_post(p, form.tags.data)
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('new_post.html', title='New post', form=form)
@@ -120,34 +123,37 @@ def create_post():
 @app.route('/post/<int:post_id>')
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    tags = post.tags
-    return render_template('post.html', title='post', post=post, tags=tags)
+    # tags = post.tags
+    return render_template('post.html', title='post', post=post)
 
 
-# @app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
-# @login_required
-# def update_post(post_id):
-#     post = Post.query.get_or_404(post_id)
-#     if current_user.id != post.user_id:
-#         abort(403)
-#     form = CreateAndUpdatePostForm()
-#     if form.validate_on_submit():
-#         if form.post_image.data:
-#             cover = save_picture(form.post_image.data, 800, 600)
-#             post.cover = cover
-#         post.title = form.title.data
-#         post.content = form.content.data
-#         for t in post.tags:
-#             db.session.query(post_tag).filter(post_tag.c.tag_id == t.id).delete()
-#         if form.tags.data:
-#             create_tags_post(post, form.tags.data)
-#         db.session.commit()
-#         return redirect(url_for('home'))
-#     form.content.data = post.content
-#     form.title.data = post.title
-#     form.tags.data = ' '.join([tag.name for tag in post.tags])
-#     tags = post.tags
-#     return render_template('new_post.html', title='post', form=form)
+@app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if current_user.id != post.user_id:
+        abort(403)
+    form = CreateAndUpdatePostForm()
+    if form.validate_on_submit():
+        if form.post_image.data:
+            cover_path = app.root_path + '/static/images/' + post.cover
+            if os.path.exists(cover_path):
+                os.remove(cover_path)
+            cover = save_picture(form.post_image.data, 800, 600)
+            post.cover = cover
+        post.title = form.title.data
+        post.content = form.content.data
+        # for t in post.tags:
+        #     db.session.query(post_tag).filter(post_tag.c.tag_id == t.id).delete()
+        # if form.tags.data:
+        #     create_tags_post(post, form.tags.data)
+        db.session.commit()
+        return redirect(url_for('home'))
+    form.content.data = post.content
+    form.title.data = post.title
+    # form.tags.data = ' '.join([tag.name for tag in post.tags])
+    # tags = post.tags
+    return render_template('new_post.html', title='post', form=form)
 
 
 @app.route('/post/<int:post_id>/delete')
@@ -156,8 +162,8 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     if current_user.id != post.user_id:
         abort(403)
-    if post.cover != 'https://via.placeholder.com/800x400':
-        cover_path = app.root_path+'static/images/'+post.cover
+    if post.cover != 'default_cover.png':
+        cover_path = app.root_path+'/static/images/'+post.cover
         if os.path.exists(cover_path):
             os.remove(cover_path)
         db.session.delete(post)
