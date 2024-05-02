@@ -42,16 +42,16 @@ class LoginForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
-    email = EmailField('Email', validators=[DataRequired(), Email()])
+    # email = EmailField('Email', validators=[DataRequired(), Email()])
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     image = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Update')
 
-    def validate_email(self, email):
-        if email.data != current_user.email:
-            u = User.query.filter_by(email=email.data).first()
-            if u:
-                raise ValidationError('That email is taken. Please choose a different one.')
+    # def validate_email(self, email):
+    #     if email.data != current_user.email:
+    #         u = User.query.filter_by(email=email.data).first()
+    #         if u:
+    #             raise ValidationError('That email is taken. Please choose a different one.')
 
     def validate_username(self, username):
         if username.data != current_user.username:
@@ -63,7 +63,7 @@ class UpdateAccountForm(FlaskForm):
 class CreateAndUpdatePostForm(FlaskForm):
     title = StringField('Title', render_kw={'placeholder': 'title of the post'})
     content = TextAreaField('Content', render_kw={'placeholder': 'content of the post'})
-    tags = StringField('Tags', render_kw={'placeholder': 'space-separated tags'})  # New tags field
+    # tags = StringField('Tags', render_kw={'placeholder': 'space-separated tags'})  # New tags field
     post_image = FileField('Post Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Post')
 
