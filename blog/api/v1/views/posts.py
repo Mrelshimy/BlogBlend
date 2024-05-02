@@ -2,7 +2,7 @@ from flask import jsonify, request, abort
 from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
-from blog.models.models import Post, User, Tag
+from blog.models.models import Post, User#, Tag
 import secrets
 from PIL import Image
 import os
@@ -99,12 +99,12 @@ def post_a_post(user_id):
             post.cover = cover
 
         # HANDLE TAGS
-        for t in data.get('tags').split():
-            tag = db.session.query(Tag).filter(Tag.name == t).first()
-            if tag is None:
-                tag = Tag(name=t)
-                db.session.add(tag)
-            post.tags.append(tag)
+        # for t in data.get('tags').split():
+        #     tag = db.session.query(Tag).filter(Tag.name == t).first()
+        #     if tag is None:
+        #         tag = Tag(name=t)
+        #         db.session.add(tag)
+        #     post.tags.append(tag)
         db.session.add(post)
         db.session.commit()
         return jsonify({'message': 'Post added successfully'}), 201

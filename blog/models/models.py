@@ -98,7 +98,7 @@ class Post(db.Model, UserMixin, SerializerMixin):
 # with app.app_context():
 #     db.drop_all()
 #     db.create_all()
-#
+
 #     user1 = User(id=1, username='user1', email='user1@one.com', password='pass1')
 #     db.session.add(user1)
 #     post1 = Post(id=1, title='title1', content='content1', user_id=user1.id)
@@ -132,7 +132,7 @@ class Post(db.Model, UserMixin, SerializerMixin):
 #     post4.tags.append(tag1)
 
 
-#     db.session.commit()
+    # db.session.commit()
 
 #     # print(post1.tags)
 #     # print(post2.tags)
