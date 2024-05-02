@@ -37,7 +37,10 @@
 
     <main class="container">
       <section class="profile">
-        <img src="{{url_for('static', filename='images/'+current_user.avatar)}}" alt="profile image" />
+        <img
+          src="{{url_for('static', filename='images/'+current_user.avatar)}}"
+          alt="profile image"
+        />
         <h1>this is my name</h1>
         <p class="bio">Hi there this is my bio.</p>
 
