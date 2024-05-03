@@ -48,18 +48,48 @@
   font-size: large;
 }
 
-.profile .buttons {
-  display: flex;
-  margin-top: 25px;
-  gap: 25px;
+.edit-form,
+.new-form {
+  margin-top: 15px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
 }
 
-.profile .buttons .new-button,
-.profile .buttons .edit-button {
+.edit-form .edit-button {
   background-color: var(--first-background-color);
-  padding: 10px;
   border-radius: 10px;
+  padding: 10px;
+  border: none;
 }
-.profile .buttons .new-button {
+
+.new-form .new-button {
   background-color: seagreen;
+  color: var(--hover-text-color);
+  border-radius: 10px;
+  padding: 10px;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  border: none;
+}
+
+.post .buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 15px;
+}
+
+.post .buttons .delete-btn,
+.post .buttons .update-btn {
+  border-radius: 10px;
+  padding: 5px;
+  border: none;
+}
+
+.post .buttons .update-btn {
+  background-color: seagreen;
+  color: var(--hover-text-color);
+  border: none;
 }

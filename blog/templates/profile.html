@@ -20,7 +20,7 @@
     <script>
       let currentUser = '{{ current_user.id }}';
     </script>
-    <script src="../static/scripts/profile/profile.js"></script>
+    <script src="../static/scripts/profile.js"></script>
     <title>BlogBlend - Profile</title>
   </head>
   <body>
@@ -40,201 +40,22 @@
         <img
           src="{{url_for('static', filename='images/'+current_user.avatar)}}"
           alt="profile image"
+          class="profile-image"
         />
-        <h1>this is my name</h1>
+        <h1 class="name">this is my name</h1>
         <p class="bio">Hi there this is my bio.</p>
-
-        <section class="buttons">
-          <form action="" class="edit-form">
-            <a href="#" class="edit-button">Edit Profile</a>
-          </form>
-          <form action="" class="new-form">
-            <a href="#" class="new-button">New Post</a>
-          </form>
-        </section>
+        <form action="" class="edit-form">
+          <button class="edit-button">Edit Profile</button>
+        </form>
       </section>
 
       <section class="posts-section">
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
+        <!-- Fetching articles from js -->
       </section>
     </main>
+
+    <form action="http://localhost:5000/post/create" class="new-form">
+      <button class="new-button">New Post</button>
+    </form>
   </body>
 </html>

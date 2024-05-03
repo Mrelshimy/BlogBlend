@@ -1,4 +1,19 @@
 $(document).ready(function () {
+  // I dont know what this is doing ?
+
+  $('article').hover(
+    function () {
+      if ($(this).find('p').length === 0) {
+        $(this)
+          .find('div.article_img a')
+          .append(`<p class="hover-tag">${post.tag}</p>`);
+      }
+    },
+    function () {
+      $(this).find('div.article_img a p').remove();
+    }
+  );
+
   const months = [
     'January',
     'February',
@@ -14,8 +29,10 @@ $(document).ready(function () {
     'December',
   ];
 
+  // Storing the user name and picture {user.id: [name:"", picture:""]}
   const UsersList = {};
 
+  // Fetching the users
   $.ajax({
     method: 'GET',
     url: 'http://localhost:5001/blog/api/v1/users/',
@@ -27,6 +44,7 @@ $(document).ready(function () {
     },
   });
 
+  // Fetching the posts and append them to posts-section
   // Just needed to add tags
   $.ajax({
     method: 'GET',
@@ -83,7 +101,3 @@ $(document).ready(function () {
     },
   });
 });
-
-// <div class="post_data">
-//   <div class="tag">${post.tag}</div>
-// </div>;

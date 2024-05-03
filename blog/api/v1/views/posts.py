@@ -43,15 +43,6 @@ def get_post(post_id):
         return jsonify(post.to_dict()), 200
 
 
-# GET POST IMG by post_id
-# http://127.0.0.1:5000/blog/api/v1/posts/<int:post_id>/img
-@views_bp.route('/posts/<int:post_id>/img', methods=['GET'], strict_slashes=False)
-def get_post_img(post_id):
-    with app.app_context():
-        pass
-
-
-
 # GET POSTS BY user_id
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>/posts
 @views_bp.route('/users/<int:user_id>/posts', methods=['GET'], strict_slashes=False)
