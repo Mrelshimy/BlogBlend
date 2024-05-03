@@ -47,38 +47,38 @@ $(document).ready(function () {
 
         const userData = UsersList[post.user_id];
 
-        $('.posts-section').append(
-          `<article class="post">
-            <img
-              class="article_img"
-              src="../static/images/${post.cover}"
-              alt="post image"
-            />
-            <div class="post-details">
-            <div class="user">
-              <img src="../static/images/${
-                userData.picture
-              }" alt="User profile" />
-              <h3 class="user-name">${
-                userData.name.charAt(0).toUpperCase() + userData.name.slice(1)
-              }</h3>
-            </div>
-            <div class="article_data">
-              <a href="http://localhost:5000/post/${post.id}">
-                <div class="title">
-                  <h2>${
-                    post.title.charAt(0).toUpperCase() + post.title.slice(1)
-                  }</h2>
-                  <p>Written in ${day} ${month} ${year}</p>
-                </div>
-                <p class="content">
-                  ${post.content}
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>`
-        );
+        // $('.posts-section').append(
+        //   `<article class="post">
+        //     <img
+        //       class="article_img"
+        //       src="../static/images/${post.cover}"
+        //       alt="post image"
+        //     />
+        //     <div class="post-details">
+        //     <div class="user">
+        //       <img src="../static/images/${
+        //         userData.picture
+        //       }" alt="User profile" />
+        //       <h3 class="user-name">${
+        //         userData.name.charAt(0).toUpperCase() + userData.name.slice(1)
+        //       }</h3>
+        //     </div>
+        //     <div class="article_data">
+        //       <a href="http://localhost:5000/post/${post.id}">
+        //         <div class="title">
+        //           <h2>${
+        //             post.title.charAt(0).toUpperCase() + post.title.slice(1)
+        //           }</h2>
+        //           <p>Written in ${day} ${month} ${year}</p>
+        //         </div>
+        //         <p class="content">
+        //           ${post.content}
+        //         </p>
+        //       </a>
+        //     </div>
+        //   </div>
+        // </article>`
+        // );
       });
     },
   });

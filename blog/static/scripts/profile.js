@@ -81,7 +81,9 @@ $(document).ready(function () {
 
           <div class="buttons">
             <button class="delete-btn">Delete</button>
-            <button class="update-btn"><a href="http://localhost:5000/post/update">Update</a></button>
+            <button class="update-btn"><a href="http://localhost:5000/post/${
+              post.id
+            }/update">Update</a></button>
           </div>
         </article>`
         );
