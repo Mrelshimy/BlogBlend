@@ -6,7 +6,7 @@ views_bp = Blueprint('views', __name__, url_prefix='/blog/api/v1')
 
 from blog.api.v1.views.users import *
 from blog.api.v1.views.posts import *
-from blog.api.v1.views.tags import *
+# from blog.api.v1.views.tags import *
 
 
 """

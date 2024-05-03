@@ -11,11 +11,13 @@ from PIL import Image
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.created_at.desc()).paginate(page=page, per_page=2)
+    return render_template('home.html', posts=posts)
 
 
 @app.route('/register', methods=['GET', 'POST'])
-def register():
+def register(): 
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -55,7 +57,9 @@ def profile():
 
 @app.route('/articles')
 def articles():
-    return render_template('articles.html')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.created_at.desc()).paginate(page=page, per_page=4)
+    return render_template('articles.html', posts=posts)
 
 
 def save_picture(form_picture, w, h):
