@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlogBlend - Login</title>
+  </head>
+
+  <body>
+    <main>
+        <div>
+            <form method="POST" action="">
+                <legend>Reset Password</legend>
+                <div>
+                    {{ form.email.label }}
+                    {% if form.email.errors %}
+                        {{ form.email }}
+                        <div>
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email }}
+                    {% endif %}
+                </div>
+            <div>
+                {{ form.submit }}
+            </div>
+            </form>
+        </div>
+      <h1>BlogBlend</h1>
+    </main>
+  </body>
+</html>

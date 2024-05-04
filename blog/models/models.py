@@ -2,7 +2,7 @@ from datetime import datetime
 from blog import db, app, bcrypt, login_manager, app
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import TimedSerializer as Serializer
 
 
 @login_manager.user_loader
