@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request, Blueprint
-from blog.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from blog.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, ResetPasswordForm, ResetRequestForm
 from blog.models.models import User
 from blog import app, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -86,3 +86,16 @@ def account():
         form.username.data = current_user.username
     # image_file = url_for('static', filename='images/' + current_user.avatar)
     return render_template('account.html', title='Account', form=form)
+
+
+@users_bp.route('/reset_password', methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('main_bp.home'))
+    form = ResetRequestForm()
+    # if form.validate_on_submit():
+    #     user = User.query.filter_by(email=form.email.data).first()
+    #     if user:
+    #         user.send_reset_email()
+    #     return redirect(url_for('users_bp.login'))
+    return render_template('reset_request.html', form=form)

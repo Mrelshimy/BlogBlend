@@ -1,7 +1,8 @@
 from datetime import datetime
-from blog import db, app, bcrypt, login_manager
+from blog import db, app, bcrypt, login_manager, app
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
 @login_manager.user_loader
@@ -18,6 +19,20 @@ class User(db.Model, UserMixin, SerializerMixin):
     bio = db.Column(db.String(255), nullable=True)
     avatar = db.Column(db.String(255), nullable=False, default='defaulte_profile.png')
     posts = db.relationship('Post', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
+    
+    def get_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+    
+    @staticmethod
+    def verify_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query(User).get(user_id)
+                                                    
     # comments = db.relationship('Comment', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # likes = db.relationship('Like', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
 
