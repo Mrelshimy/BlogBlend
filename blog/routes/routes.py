@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from flask import render_template, redirect, url_for, request, abort
 from blog.routes.forms import RegistrationForm, LoginForm, UpdateAccountForm, CreateAndUpdatePostForm
 from blog.models.models import User, Post
@@ -178,7 +177,7 @@ def delete_post(post_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-=======
+
 # from flask import render_template, redirect, url_for, request, abort
 # from blog.routes.forms import RegistrationForm, LoginForm, UpdateAccountForm, CreateAndUpdatePostForm
 # from blog.models.models import User, Post
