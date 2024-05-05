@@ -28,7 +28,7 @@ $(document).ready(function () {
         $('.latest_posts').append(`
             <article class="row" id="art1">
               <div class="post_img">
-                <a href="#" style="background-image: url('${post.cover}')"></a>
+                <a href="#" style="background-image: url('../static/images/${post.cover}'); background-size: cover"></a>
               </div>
               <div class="post_data">
                 <div class="tag">${post.tag}</div>

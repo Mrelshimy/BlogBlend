@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../static/styles/post/container.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../static/scripts/post/like.js"></script>
-    <script> let postId = '{{ post_id }}'; </script>
+    <script> let postId = '{{ post.id }}'; </script>
     <script src="../static/scripts/post/container.js"></script>
     <title>BlogBlend - Post</title>
 </head>
@@ -39,7 +39,7 @@
             <h1><strong></strong></h1>
             <p class="post_date"></p>
             <p class="post_author"></p>
-            <button class="like"></button>
+            <!-- <button class="like"></button> -->
         </div>
     </div>
     <div class="post_text">

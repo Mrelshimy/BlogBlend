@@ -13,7 +13,9 @@ $(document).ready(function () {
             <div class="article_img">
               <a href="http://localhost:5000/post/${
                 post.id
-              }" style="background-image: url('${post.cover}')"></a>
+              }" style="background-image: url('../static/images/${post.cover}');
+              background-size: cover
+              "></a>
             </div>
             <div class="article_data">
               <a href="http://localhost:5000/post/${
