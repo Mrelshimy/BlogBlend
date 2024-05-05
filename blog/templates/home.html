@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/styles/reset.css" />
+    <link rel="stylesheet" href="../static/styles/article.css" />
+    <link rel="stylesheet" href="../static/styles/pagination.css" />
     <link rel="stylesheet" href="../static/styles/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,13 +18,13 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../static/scripts/home_posts.js"></script>
+    <script src="../static/scripts/home.js"></script>
     <title>BlogBlend - Home</title>
   </head>
   <body>
     <header class="head">
       <nav class="navbar">
-        <ul>
+        <ul class="links">
           <li><a href="#">Home</a></li>
           <li><a href="http://localhost:5000/articles">Articles</a></li>
           {% if current_user.is_authenticated %}
@@ -34,9 +36,7 @@
           {% endif %}
         </ul>
       </nav>
-    </header>
 
-    <main>
       <section class="brand">
         <div class="logo-one">
           <div class="logo-one-text">
@@ -51,64 +51,79 @@
           </h2>
         </div>
       </section>
+    </header>
 
-      <section class="container">
-        <section class="posts-section">
-          <!-- Fetching data in home.js -->
-          {% for post in posts.items %}
-          <article class="post">
+    <main>
+      <section class="posts-section">
+        <!-- Fetching data in home.js -->
+        {% for post in posts.items %}
+        <article class="post">
+          <div class="article-img">
             <img
-              class="article_img"
               src="{{ url_for('static', filename='images/' + post.cover) }}"
               alt="post image"
             />
-            <div class="post-details">
-              <div class="user">
+          </div>
+          <div class="post-details">
+            <div class="user">
+              <div>
                 <img
                   src="{{ url_for('static', filename='images/' + post.user.avatar) }}"
                   alt="User profile"
                 />
-                <h3 class="user-name">{{ post.user.username }}</h3>
               </div>
-              <div class="article_data">
-                <a href="#">
-                  <div class="title">
-                    <h2>{{ post.title }}</h2>
-                    <p>Written on {{ post.created_at.strftime('%Y-%m-%d') }}</p>
-                  </div>
-                  <p class="content">{{ post.content[:200] }}</p>
-                </a>
-              </div>
+              <h3 class="user-name">{{ post.user.username }}</h3>
             </div>
-          </article>
-          {% endfor %} {% for page_num in posts.iter_pages(left_edge=1,
-          right_edge=1, left_current=1, right_current=1) %} {% if page_num %}
-          <a href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
-          {% else %} ... {% endif %} {% endfor %}
-        </section>
+            <div class="article_data">
+              <a href="http://localhost:5000/post/{{ post.id }}">
+                <div class="title">
+                  <h2>{{ post.title }}</h2>
+                  <p>
+                    Written on {{ post.created_at.strftime('%Y - %m - %d') }}
+                  </p>
+                </div>
+                <p class="content">{{ post.content[:200] }}</p>
+              </a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
 
+        <section class="pagination">
+          {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,
+          left_current=1, right_current=1) %} {% if page_num %}
+          <div>
+            <a href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+          </div>
+          {% else %}
+          <div class="dots">...</div>
+          {% endif %} {% endfor %}
+        </section>
+      </section>
+
+      <section class="filters">
         <section class="filters-section">
           <h4>Filter more what matters you</h4>
           <section class="tags">
-            <a href="#">Programming</a>
-            <a href="#">Data Science</a>
-            <a href="#">Technology</a>
-            <a href="#">Self Improvement</a>
-            <a href="#">Writing</a>
-            <a href="#">Relationships</a>
-            <a href="#">Machine Learning</a>
-            <a href="#">Productivity</a>
-            <a href="#">Politics</a>
+            <div><a href="#">Programming</a></div>
+            <div><a href="#">Data Science</a></div>
+            <div><a href="#">Technology</a></div>
+            <div><a href="#">Self Improvement</a></div>
+            <div><a href="#">Writing</a></div>
+            <div><a href="#">Relationships</a></div>
+            <div><a href="#">Productivity</a></div>
+            <div><a href="#">Politics</a></div>
+            <div><a href="#">Machine Learning</a></div>
           </section>
-          <section class="filters-links">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="http://localhost:5000/articles">Articles</a></li>
-              <li><a href="http://localhost:5000/login">Login</a></li>
-              <li><a href="http://localhost:5000/register">Register</a></li>
-              <li><a href="#">Careers</a></li>
-            </ul>
-          </section>
+        </section>
+        <section class="filters-links">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="http://localhost:5000/articles">Articles</a></li>
+            <li><a href="http://localhost:5000/login">Login</a></li>
+            <li><a href="http://localhost:5000/register">Register</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
         </section>
       </section>
     </main>

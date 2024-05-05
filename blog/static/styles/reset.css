@@ -2,6 +2,7 @@
   --first-background-color: lightgrey;
   --second-background-color: #212223;
   --hover-text-color: rgb(253, 253, 253);
+  --orange-color: #ff7f50;
   /* --first-font-family:   */
   /* --second-font-family:   */
 }
@@ -57,14 +58,6 @@ button,
 input,
 label {
   line-height: 1.1;
-}
-
-/* Balance text wrapping on headings */
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
 }
 
 /* A elements that don't have a class get default styles */

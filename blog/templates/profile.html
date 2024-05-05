@@ -14,8 +14,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../static/styles/reset.css" />
-    <link rel="stylesheet" href="../static/styles/profile.css" />
     <link rel="stylesheet" href="../static/styles/article.css" />
+    <link rel="stylesheet" href="../static/styles/profile.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       let currentUser = '{{ current_user.id }}';
@@ -37,14 +37,16 @@
 
     <main class="container">
       <section class="profile">
-        <img
-          src="{{url_for('static', filename='images/'+current_user.avatar)}}"
-          alt="profile image"
-          class="profile-image"
-        />
+        <div class="img">
+          <img
+            src="{{url_for('static', filename='images/'+current_user.avatar)}}"
+            alt="profile image"
+            class="profile-image"
+          />
+        </div>
         <h1 class="name">this is my name</h1>
         <p class="bio">Hi there this is my bio.</p>
-        <form action="" class="edit-form">
+        <form action="http://localhost:5000/account" class="edit-form">
           <button class="edit-button">Edit Profile</button>
         </form>
       </section>

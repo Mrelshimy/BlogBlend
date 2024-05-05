@@ -1,14 +1,27 @@
 $(document).ready(function () {
   $(document).ready(function () {
-    let UsersList = {};
+    let user = {};
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:5001/blog/api/v1/users/',
+      url: `http://localhost:5001/blog/api/v1/users/${currentUser}`,
       contentType: 'application/json',
       success: function (data) {
-        data.forEach((user) => {
-          UsersList[user.id] = user.username;
-        });
+        user = { name: data.username, picture: data.avatar };
       },
     });
 
@@ -17,25 +30,42 @@ $(document).ready(function () {
       url: `http://localhost:5001/blog/api/v1/posts/${postId}`,
       contentType: 'application/json',
       success: function (data) {
-        const userName = UsersList[data.user_id];
         if (data.tag === undefined) {
           data.tag = '';
         }
-        $('.post_tag').text(data.tag);
-        $('.post_title h1 strong').text(
-          data.title.charAt(0).toUpperCase() + data.title.slice(1)
+
+        const post_date = new Date(data.created_at);
+        const year = post_date.getFullYear();
+        const month = months[post_date.getMonth()];
+        const day = post_date.getDate();
+
+        $('.article').append(
+          `
+          <div class="title">
+            <h2>${data.title.charAt(0).toUpperCase() + data.title.slice(1)}</h2>
+          </div>
+
+          <div class="infos">
+            <div class="author-img">
+              <img src="../static/images/${
+                user.picture
+              }" alt="Author Picture" />
+            </div>
+            <div class="name-date">
+              <p class="author-name">${user.name}</p>
+              <p class="post-date">Written in ${day} ${month} ${year}</p>
+            </div>
+          </div>
+
+          <div class="img-div">
+            <img src="../static/images/${data.cover}" alt="Post Cover" />
+          </div>
+
+          <div class="content">
+            <p>${data.content}</p>
+          </div>
+          `
         );
-        $('.post_content').text(
-          data.content.charAt(0).toUpperCase() + data.content.slice(1)
-        );
-        $('.post_date').text(data.created_at.slice(0, 16));
-        $('.post_author').text(
-          userName.charAt(0).toUpperCase() + userName.slice(1)
-        );
-        $('.post_text p').text(
-          data.content.charAt(0).toUpperCase() + data.content.slice(1)
-        );
-        $('.post_image').css('background-image', `url(${data.cover})`);
       },
     });
   });

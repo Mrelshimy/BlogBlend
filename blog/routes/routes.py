@@ -11,11 +11,13 @@ from PIL import Image
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.created_at.desc()).paginate(page=page, per_page=5)
+    return render_template('home.html', posts=posts)
 
 
 @app.route('/register', methods=['GET', 'POST'])
-def register():
+def register(): 
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -55,7 +57,9 @@ def profile():
 
 @app.route('/articles')
 def articles():
-    return render_template('articles.html')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.created_at.desc()).paginate(page=page, per_page=4)
+    return render_template('articles.html', posts=posts)
 
 
 def save_picture(form_picture, w, h):
@@ -81,7 +85,7 @@ def account():
             avatar_path = app.root_path + '/static/images/' + current_user.avatar
             if os.path.exists(avatar_path):
                 os.remove(avatar_path)
-            current_user.avatar = save_picture(form.image.data, 150, 150)
+            current_user.avatar = save_picture(form.image.data, 800, 600)
         db.session.commit()
         return redirect(url_for('home'))
     elif request.method == 'GET':
@@ -169,6 +173,7 @@ def delete_post(post_id):
         db.session.delete(post)
         db.session.commit()
     return redirect(url_for('home'))
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

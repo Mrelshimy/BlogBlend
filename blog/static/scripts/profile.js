@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let titles_ids = {};
+  let user = {};
   const months = [
     'January',
     'February',
@@ -15,7 +16,9 @@ $(document).ready(function () {
     'December',
   ];
 
-  let user = {};
+  function capitalizeFirstLetter(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
 
   // Fetching the users
   $.ajax({
@@ -34,9 +37,6 @@ $(document).ready(function () {
     url: `http://localhost:5001/blog/api/v1/users/${currentUser}/posts/`,
     contentType: 'application/json',
     success: function (data) {
-      data.sort(() => Math.random() - 0.5);
-      data = data.slice(0, 5);
-
       data.forEach((post) => {
         titles_ids[post.title.toLowerCase()] = post.id;
         if (post.tag === undefined) {
@@ -50,41 +50,35 @@ $(document).ready(function () {
 
         $('.posts-section').append(
           `<article class="post">
-            <img
-              class="article_img"
-              src="../static/images/${post.cover}"
-              alt="post image"
-            />
-            <div class="post-details">
+            <section class="img_and_data">
 
-            <div class="user">
-              <img src="../static/images/${user.picture}" alt="User profile" />
-              <h3 class="user-name">${
-                user.name.charAt(0).toUpperCase() + user.name.slice(1)
-              }</h3>
-            </div>
-            
-            <div class="article_data">
-              <a href="http://localhost:5000/post/${post.id}">
-                <div class="title">
-                  <h2>${
-                    post.title.charAt(0).toUpperCase() + post.title.slice(1)
-                  }</h2>
-                  <p>Written in ${day} ${month} ${year}</p>
-                </div>
-                <p class="content">
-                  ${post.content}
-                </p>
-              </a>
-            </div>
-          </div>
+              <div class="article-img">  
+                <img
+                    class="article_img"
+                    src="../static/images/${post.cover}"
+                    alt="post image"/>
+              </div>
 
-          <div class="buttons">
-            <button class="delete-btn">Delete</button>
-            <button class="update-btn"><a href="http://localhost:5000/post/${
-              post.id
-            }/update">Update</a></button>
-          </div>
+              
+              <div class="article_data">
+                <a href="http://localhost:5000/post/${post.id}">
+                  <div class="title">
+                    <h2>${capitalizeFirstLetter(post.title)}</h2>
+                    <p>Written in ${day} ${month} ${year}</p>
+                  </div>
+                  <p class="content">
+                    ${post.content}
+                  </p>
+                </a>
+              </div>
+            </section>
+
+            <section class="buttons">
+              <button class="delete-btn">Delete</button>
+              <button class="update-btn"><a href="http://localhost:5000/post/${
+                post.id
+              }/update">Update</a></button>
+            </section>
         </article>`
         );
       });
@@ -123,7 +117,7 @@ $(document).ready(function () {
           data.bio.charAt(0).toUpperCase() + data.bio.slice(1)
         );
       } else {
-        $('.profile .bio').text('NO BIO');
+        $('.profile .bio').text('No BIO YET');
       }
     },
   });

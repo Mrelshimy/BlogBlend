@@ -1,0 +1,133 @@
+.head {
+  font-family: kanit, sans-serif;
+  text-align: center;
+}
+
+.head .links {
+  padding: 10px 0;
+  background-color: var(--first-background-color);
+}
+
+.navbar ul li {
+  display: inline-block;
+  margin-right: 40px;
+  font-size: x-large;
+}
+
+.navbar ul li:hover {
+  color: var(--hover-text-color);
+}
+
+/* MAIN */
+
+main {
+  margin: 85px auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(80vh - 100px);
+  width: 60%;
+  font-family: kanit, sans-serif;
+}
+
+.form-container {
+  border: 3px solid var(--second-background-color);
+  background-color: var(--hover-text-color);
+  padding: 25px;
+  margin-top: 25px;
+  border-radius: 5px;
+  width: 85%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 90%;
+}
+
+.inputs-container .title {
+  width: 85%;
+}
+
+.inputs-container .content {
+  width: 85%;
+  height: 60%;
+}
+
+.title input {
+  padding: 13px;
+  border-radius: 10px;
+  border: 1px solid var(--second-background-color);
+  font-family: kanit, sans-serif;
+  width: 100%;
+  font-size: 15px;
+}
+
+.inputs-container .content textarea {
+  padding: 13px;
+  border-radius: 10px;
+  font-family: kanit, sans-serif;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+}
+
+.inputs-container .image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.inputs-container .image .image-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--first-background-color);
+}
+
+.inputs-container .image .image-input input[type='file'] {
+  display: inline-block;
+  padding: 10px;
+  background-color: var(--first-background-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 15px;
+}
+
+form .submit input {
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid var(--second-background-color);
+  background-color: var(--second-background-color);
+  color: var(--hover-text-color);
+}
+
+form .submit input:hover {
+  border: 1px solid var(--first-background-color);
+  background-color: var(--first-background-color);
+  color: var(--second-background-color);
+}
+
+footer {
+  background-color: var(--first-background-color);
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  margin-top: auto;
+  font-family: kanit, sans-serif;
+}
