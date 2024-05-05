@@ -4,6 +4,7 @@ from blog.models.models import User
 from blog import app, db, mail
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_mail import Message
+from urllib.parse import urlencode, parse_qs
 import os
 import secrets
 from PIL import Image
@@ -90,12 +91,15 @@ def account():
 
 
 def send_reset_email(user):
-    # token = user.get_token()
-    msg = Message('Password Reset Request', sender='mraafat.elsayed@gmail.com',
-                    recipients=[user.email])
+    token = user.get_token()
+    reset_url = url_for('users_bp.reset_request', _external=True)
+    reset_url_with_token = reset_url + f"/{token}"
+    msg = Message('Password Reset Request', sender='noreply@blogblend.com',
+                  recipients=[user.email])
     msg.body = f'''To reset your password, visit the following link:
+{reset_url_with_token}
 
-if you didn't make this request ignore this email
+If you didn't make this request, ignore this email.
 '''
     mail.send(msg)
 
@@ -105,10 +109,10 @@ def reset_request():
         return redirect(url_for('main_bp.home'))
     form = RequestResetForm()
     if form.validate_on_submit():
-        # user = User.query.filter_by(email=form.email.data).first()
-        # send_reset_email(user)
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
         flash('An email has been sent with instructions to reset your password')
-        return redirect(url_for('users_bp.login'))
+        return redirect(url_for('main_bp.home'))
     return render_template('reset_request.html', form=form)
 
 
@@ -116,13 +120,15 @@ def reset_request():
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('main_bp.home'))
-    user = User.verify_token(token)
+    parsed_url = parse_qs(token)
+    user_id = parsed_url['user_id'][0]
+    user = User.query.get(user_id)
     if user is None:
         flash('That is an invalid or expired token')
         return redirect(url_for('users_bp.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        user.set_password(form.password)
+        user.set_password(form.password.data)
         db.session.commit()
-        return redirect(url_for('user_bp.login'))
+        return redirect(url_for('users_bp.login'))
     return render_template('reset_token.html', form=form)

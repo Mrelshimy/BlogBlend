@@ -1,8 +1,8 @@
 from datetime import datetime
-from blog import db, app, bcrypt, login_manager, app
+from blog import db, app, bcrypt, login_manager, app, secret_key
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
-from itsdangerous import TimedSerializer as Serializer
+from urllib.parse import urlencode, parse_qs
 
 
 @login_manager.user_loader
@@ -20,18 +20,30 @@ class User(db.Model, UserMixin, SerializerMixin):
     avatar = db.Column(db.String(255), nullable=False, default='defaulte_profile.png')
     posts = db.relationship('Post', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     
-    def get_token(self, expires_sec=1800):
-        s = Serializer(app.config['SECRET_KEY'], expires_sec)
-        return s.dumps({'user_id': self.id}).decode('utf-8')
+    def get_token(self):
+        encoded_user_id = urlencode({'user_id': self.id})
+        return encoded_user_id
+
+    # @staticmethod
+    # def verify_token():
+    #     parsed_url = parse_qs(url)
+    #     if 'user_id' in parsed_url:
+    #     return parsed_url['user_id'][0]
+    #     user_id = get_jwt_identity()
+    #     return User.query.get(user_id)
+ 
+    # def get_token(self, expires_sec=1800):
+    #     s = jwt(app.config['SECRET_KEY'], expires_sec)
+    #     return s.dumps({'user_id': self.id}).decode('utf-8')
     
-    @staticmethod
-    def verify_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
-        try:
-            user_id = s.loads(token)['user_id']
-        except:
-            return None
-        return User.query(User).get(user_id)
+    # @staticmethod
+    # def verify_token(token):
+    #     s = Serializer(app.config['SECRET_KEY'])
+    #     try:
+    #         user_id = s.loads(token)['user_id']
+    #     except:
+    #         return None
+    #     return User.query(User).get(user_id)
                                                     
     # comments = db.relationship('Comment', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # likes = db.relationship('Like', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
