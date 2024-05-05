@@ -1,13 +1,14 @@
 from flask import render_template, redirect, url_for, request, Blueprint, flash
 from blog.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, ResetPasswordForm, RequestResetForm
 from blog.models.models import User
-from blog import app, db, mail
+from blog import app, db, mail, secret_key
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_mail import Message
 from urllib.parse import urlencode, parse_qs
 import os
 import secrets
 from PIL import Image
+import jwt
 
 users_bp = Blueprint('users_bp', __name__)
 
@@ -120,8 +121,7 @@ def reset_request():
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('main_bp.home'))
-    parsed_url = parse_qs(token)
-    user_id = parsed_url['user_id'][0]
+    user_id = jwt.decode(token, secret_key, algorithms=['HS256'])['user_id']
     user = User.query.get(user_id)
     if user is None:
         flash('That is an invalid or expired token')
