@@ -1,7 +1,8 @@
 from datetime import datetime
-from blog import db, app, bcrypt, login_manager
+from blog import db, app, bcrypt, login_manager, app, secret_key
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
+import jwt
 
 
 @login_manager.user_loader
@@ -18,6 +19,13 @@ class User(db.Model, UserMixin, SerializerMixin):
     bio = db.Column(db.String(255), nullable=True)
     avatar = db.Column(db.String(255), nullable=False, default='defaulte_profile.png')
     posts = db.relationship('Post', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
+
+
+    def get_token(self):
+        encoded_user_id = jwt.encode({'user_id': self.id}, secret_key, algorithm='HS256')
+        return encoded_user_id
+
+                                                    
     # comments = db.relationship('Comment', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
     # likes = db.relationship('Like', back_populates='user', lazy=True, cascade='all, delete, delete-orphan')
 
