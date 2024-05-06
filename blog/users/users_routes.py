@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request, Blueprint, flash
 from blog.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, ResetPasswordForm, RequestResetForm
-from blog.models.models import User
+from blog.models.models import User, Post
 from blog import app, db, mail, secret_key
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_mail import Message
@@ -55,7 +55,9 @@ def profile():
 
 @users_bp.route('/articles')
 def articles():
-    return render_template('articles.html')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.created_at.desc()).paginate(page=page, per_page=4)
+    return render_template('articles.html', posts=posts)
 
 
 def save_picture(form_picture, w, h):
@@ -77,6 +79,7 @@ def account():
     if form.validate_on_submit():
         # current_user.email = form.email.data
         current_user.username = form.username.data
+        current_user.bio = form.bio.data
         if form.image.data:
             avatar_path = app.root_path + '/static/images/' + current_user.avatar
             if os.path.exists(avatar_path):
@@ -87,6 +90,7 @@ def account():
     elif request.method == 'GET':
         # form.email.data = current_user.email
         form.username.data = current_user.username
+        form.bio.data = current_user.bio
     # image_file = url_for('static', filename='images/' + current_user.avatar)
     return render_template('account.html', title='Account', form=form)
 

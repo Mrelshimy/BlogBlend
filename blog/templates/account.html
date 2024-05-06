@@ -39,31 +39,52 @@
             {{ form.hidden_tag() }}
             <fieldset class="fieldset">
                 <legend class="legend">Account Info</legend>
-                <div class="form-group-one form-grp">
-                    {{ form.username.label(class="form-control-label") }}
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                <section class="inputs">
+                    <!-- Update Username -->
+                    <div class="form-group-one form-grp">
+                        {{ form.username.label }}
+                        {% if form.username.errors %}
+                        {{ form.username }}
                         <div class="invalid-feedback">
                             {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
+                            <span>{{ error }}</span>
                             {% endfor %}
                         </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                   <div class="form-group-two form-grp"> 
-                    {{ form.image.label() }}
-                        {{ form.image(class="form-control-file") }}
-                        {% if form.image.errors %}
-                            {% for error in form.image.errors %}
-                                <span class="text-danger">{{ error }}</span></br>
-                            {% endfor %}
+                        {% else %}
+                        {{ form.username }}
                         {% endif %}
                     </div>
-                     <div class="form-group-three form-grp">
-                        {{ form.submit(class="btn btn-outline-info") }}
+
+                    <!-- Update Bio -->
+                    <div class="form-group-one form-grp">
+                        {{ form.bio.label }}
+                        {% if form.bio.errors %}
+                        {{ form.bio }}
+                        <div class="invalid-feedback">
+                            {% for error in form.bio.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.bio }}
+                        {% endif %}
                     </div>
+
+                    <!-- Update Image -->
+                    <div class="form-group-two form-grp"> 
+                        {{ form.image.label() }}
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                        {% for error in form.image.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </section>
+                    
+                <div class="form-group-three form-grp">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
             </fieldset>
         
        

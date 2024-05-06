@@ -59,9 +59,8 @@ $(document).ready(function () {
                     alt="post image"/>
               </div>
 
-              
               <div class="article_data">
-                <a href="http://localhost:5000/post/${post.id}">
+                <a href="http://localhost:5000/posts/${post.id}">
                   <div class="title">
                     <h2>${capitalizeFirstLetter(post.title)}</h2>
                     <p>Written in ${day} ${month} ${year}</p>
@@ -75,7 +74,7 @@ $(document).ready(function () {
 
             <section class="buttons">
               <button class="delete-btn">Delete</button>
-              <button class="update-btn"><a href="http://localhost:5000/post/${
+              <button class="update-btn"><a href="http://localhost:5000/posts/${
                 post.id
               }/update">Update</a></button>
             </section>
@@ -86,9 +85,8 @@ $(document).ready(function () {
   });
 
   $(document).on('click', '.delete-btn', function () {
-    postId = postId =
+    postId =
       titles_ids[$(this).parent().parent().find('h2').text().toLowerCase()];
-    console.log(postId);
 
     $.ajax({
       method: 'DELETE',
