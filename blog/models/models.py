@@ -106,7 +106,7 @@ class Post(db.Model, UserMixin, SerializerMixin):
 # with app.app_context():
 #     db.drop_all()
 #     db.create_all()
-#
+
 #     user1 = User(id=1, username='user1', email='user1@one.com', password='pass1')
 #     db.session.add(user1)
 #     post1 = Post(id=1, title='title1', content='content1', user_id=user1.id)
@@ -121,6 +121,12 @@ class Post(db.Model, UserMixin, SerializerMixin):
 #     post4 = Post(id=4, title='title4', content='content4', user_id=user2.id)
 #     db.session.add(post4)
     
+    # post5 = Post(id=5, title='title5', content='content5', user_id=3)
+    # db.session.add(post5)
+    # post6 = Post(id=6, title='title6', content='content6', user_id=3)
+    # db.session.add(post6)
+
+
 #     tag1 = Tag(id=1, name='tag1')
 #     db.session.add(tag1)
 #     tag2 = Tag(id=2, name='tag2')
@@ -140,7 +146,7 @@ class Post(db.Model, UserMixin, SerializerMixin):
 #     post4.tags.append(tag1)
 
 
-#     db.session.commit()
+    # db.session.commit()
 
 #     # print(post1.tags)
 #     # print(post2.tags)

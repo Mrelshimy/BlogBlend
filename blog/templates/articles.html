@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../static/styles/reset.css" />
     <link rel="stylesheet" href="../static/styles/article.css" />
     <link rel="stylesheet" href="../static/styles/articles.css" />
-
+    <link rel="stylesheet" href="../static/styles/pagination.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../static/scripts/articles/articles.js"></script>
+    <script src="../static/scripts/articles.js"></script>
     <title>BlogBlend - Articles</title>
   </head>
   <body>
@@ -47,368 +47,57 @@
         </ul>
       </nav>
     </header>
+
     <main class="container">
       <section class="posts-section">
+        {% for post in posts.items %}
         <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
+          <div class="article-img">
+            <img
+              src="{{ url_for('static', filename='images/' + post.cover) }}"
+              alt="post image"
+            />
+          </div>
           <div class="post-details">
             <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
+              <div>
+                <img
+                  src="{{ url_for('static', filename='images/' + post.user.avatar) }}"
+                  alt="User profile"
+                />
+              </div>
+              <h3 class="user-name">{{ post.user.username }}</h3>
             </div>
             <div class="article_data">
-              <a href="#">
+              <a href="http://localhost:5000/posts/{{ post.id }}">
                 <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
+                  <h2>{{ post.title }}</h2>
+                  <p>
+                    Written on {{ post.created_at.strftime('%Y - %m - %d') }}
+                  </p>
                 </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
+                <p class="content">{{ post.content[:200] }}</p>
               </a>
             </div>
           </div>
         </article>
+        {% endfor %}
+      </section>
 
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post">
-          <img
-            class="article_img"
-            src="../static/images/post_sample.jpg"
-            alt="post image"
-          />
-          <div class="post-details">
-            <div class="user">
-              <img
-                src="../static/images/channels4_profile.jpg"
-                alt="User profile"
-              />
-              <h3 class="user-name">Writer name</h3>
-            </div>
-            <div class="article_data">
-              <a href="#">
-                <div class="title">
-                  <h2>article title</h2>
-                  <p>Written in 7, Oct 2023</p>
-                </div>
-                <p class="content">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur? Lorem ipsum dolor, sit
-                  amet consectetur adipisicing elit. Voluptates, nulla nostrum
-                  nisi debitis voluptatibus facere aspernatur? Lorem ipsum
-                  dolor, sit amet consectetur adipisicing elit. Voluptates,
-                  nulla nostrum nisi debitis voluptatibus facere aspernatur?
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Voluptates, nulla nostrum nisi debitis voluptatibus facere
-                  aspernatur? Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Voluptates, nulla nostrum nisi debitis
-                  voluptatibus facere aspernatur? Lorem ipsum dolor, sit amet
-                  consectetur adipisicing elit. Voluptates, nulla nostrum nisi
-                  debitis voluptatibus facere aspernatur?
-                </p>
-              </a>
-            </div>
-          </div>
-        </article>
+      <section class="pagination">
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,
+        left_current=1, right_current=1) %} {% if page_num %}
+        <div>
+          <a href="{{ url_for('users_bp.articles', page=page_num) }}"
+            >{{ page_num }}</a
+          >
+        </div>
+        {% else %}
+        <div class="dots">...</div>
+        {% endif %} {% endfor %}
       </section>
     </main>
+
     <footer>
       <p>BlogBlend - 2024</p>
     </footer>

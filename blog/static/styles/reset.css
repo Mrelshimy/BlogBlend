@@ -2,6 +2,9 @@
   --first-background-color: lightgrey;
   --second-background-color: #212223;
   --hover-text-color: rgb(253, 253, 253);
+  --orange-color: #ff7f50;
+  /* --first-font-family:   */
+  /* --second-font-family:   */
 }
 
 /* Box sizing rules */
@@ -57,14 +60,6 @@ label {
   line-height: 1.1;
 }
 
-/* Balance text wrapping on headings */
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-}
-
 /* A elements that don't have a class get default styles */
 a {
   text-decoration-skip-ink: auto;
@@ -96,4 +91,8 @@ textarea:not([rows]) {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
+}
+
+button:hover {
+  cursor: pointer;
 }

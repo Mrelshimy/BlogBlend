@@ -4,6 +4,7 @@
   padding: 20px;
   background-color: var(--first-background-color);
   margin-bottom: 40px;
+  font-family: kanit, sans-serif;
 }
 
 .header a {
@@ -28,6 +29,16 @@
 }
 
 .posts-section {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* align-items: center; */
+  /* justify-content: space-around; */
+  /* position: relative; */
+}
+
+/* .posts-section {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -36,7 +47,7 @@
 
 .posts-section .post {
   width: 40%;
-}
+} */
 
 footer {
   background-color: var(--first-background-color);
@@ -45,4 +56,12 @@ footer {
   padding-bottom: 15px;
   text-align: center;
   margin-top: auto;
+  font-family: kanit, sans-serif;
+}
+
+/* # Phone */
+@media (max-width: 767px) {
+  .header > a {
+    display: none;
+  }
 }

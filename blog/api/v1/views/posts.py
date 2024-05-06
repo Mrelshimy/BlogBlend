@@ -2,7 +2,7 @@ from flask import jsonify, request, abort
 from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
-from blog.models.models import Post, User, Tag
+from blog.models.models import Post, User#, Tag
 import secrets
 from PIL import Image
 import os
@@ -41,15 +41,6 @@ def get_post(post_id):
     with app.app_context():
         post = db.get_or_404(Post, post_id)
         return jsonify(post.to_dict()), 200
-
-
-# GET POST IMG by post_id
-# http://127.0.0.1:5000/blog/api/v1/posts/<int:post_id>/img
-@views_bp.route('/posts/<int:post_id>/img', methods=['GET'], strict_slashes=False)
-def get_post_img(post_id):
-    with app.app_context():
-        pass
-
 
 
 # GET POSTS BY user_id
@@ -99,12 +90,12 @@ def post_a_post(user_id):
             post.cover = cover
 
         # HANDLE TAGS
-        for t in data.get('tags').split():
-            tag = db.session.query(Tag).filter(Tag.name == t).first()
-            if tag is None:
-                tag = Tag(name=t)
-                db.session.add(tag)
-            post.tags.append(tag)
+        # for t in data.get('tags').split():
+        #     tag = db.session.query(Tag).filter(Tag.name == t).first()
+        #     if tag is None:
+        #         tag = Tag(name=t)
+        #         db.session.add(tag)
+        #     post.tags.append(tag)
         db.session.add(post)
         db.session.commit()
         return jsonify({'message': 'Post added successfully'}), 201

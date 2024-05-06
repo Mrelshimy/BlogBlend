@@ -17,3 +17,15 @@ form {
 .new-user {
   text-decoration: underline;
 }
+
+.form-container .buttons {
+  display: flex;
+  gap: 20px;
+}
+.form-container .buttons a {
+  text-decoration: none;
+}
+
+.form-container .buttons a:hover {
+  text-decoration: underline;
+}

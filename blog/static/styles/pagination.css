@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  height: 50px;
+  font-family: kanit, sans-serif;
+}
+
+.pagination div {
+  width: fit-content;
+  height: 20px;
+}
+
+.pagination a {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--first-background-color);
+}
+
+.pagination div:not(:first-child) a,
+.pagination .dots {
+  margin-left: 20px;
+}
+
+.pagination a:hover {
+  background-color: var(--hover-text-color);
+  border: 1px solid var(--first-background-color);
+}

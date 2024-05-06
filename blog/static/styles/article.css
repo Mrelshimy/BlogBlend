@@ -1,70 +1,108 @@
-.posts-section {
-  width: 50%;
-}
 .post {
+  font-family: kanit, sans-serif;
   display: flex;
-  justify-content: center;
-  margin-bottom: 60px;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
   padding: 10px;
+  width: 530px;
 }
 
-.article_img {
-  width: 300px;
-  height: 80%;
-  align-self: center;
-  margin-right: 50px;
+.article-img {
+  width: 250px;
+  height: 145px;
   border-radius: 10px;
+}
+
+.article-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.post-details {
+  padding: 5px;
+  width: 50%;
 }
 
 .user {
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
-.user img {
-  width: 50px;
+.user > div {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  padding-right: 10px;
+  margin-right: 10px;
 }
 
-.user .user-name {
-  padding-left: 10px;
+.user > div img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .article_data {
-  height: auto;
+  max-height: 130px;
+  min-height: 100px;
   width: 100%;
 }
 
 .title {
-  padding: 10px 0px 0px 0px;
+  width: 100%;
+  margin-bottom: 10px;
+  white-space: normal;
+  overflow: hidden;
+  font-size: small;
 }
 
 .title h2 {
-  padding-right: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .title p {
-  padding: 10px 0px;
+  margin-top: 1.5px;
   color: grey;
 }
 
 .content {
   overflow: hidden;
   display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  position: relative;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
-.content::after {
-  content: '..Read more';
-  position: absolute;
-  bottom: 0;
-  right: 7px;
-  background-color: white;
-  padding: 1px 2px;
-  border-radius: 5px;
-  border-bottom: 1px solid var(--first-background-color);
+/* # Tablet */
+@media (max-width: 1024px) {
+}
+
+/* # Phone */
+@media (max-width: 767px) {
+  .article-img {
+    width: 180px;
+    height: 135px;
+  }
+
+  .post {
+    width: 355px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .post-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
 }
