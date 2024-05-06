@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/styles/reset.css" />
+    <link rel="stylesheet" href="../static/styles/reset_password.css" />
+    <title>BlogBlend - Reset Password</title>
+  </head>
+
+  <body>
+    <header class="head">
+      <nav class="navbar">
+        <ul class="links">
+          <li><a href="http://localhost:5000">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="headers">
+          <h2>Password Reset</h2>
+        </div>
+
+        <div class="email-input">
+          <!-- Email Label -->
+          {{ form.password.label }}
+
+          <!-- New Password Input -->
+          {% if form.password.errors %} {{ form.password }}
+
+          <div>
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.password }} {% endif %}
+        </div>
+
+        <div class="email-input">
+          <!-- Email Label -->
+          {{ form.password2.label }}
+
+          <!-- New Password Input -->
+          {% if form.password2.errors %} {{ form.password2 }}
+
+          <div>
+            {% for error in form.password2.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %} {{ form.password2 }} {% endif %}
+        </div>
+
+        <div class="submit-btn">{{ form.submit }}</div>
+      </form>
+
+      <div class="logo"><h1>BlogBlend</h1></div>
+    </main>
+  </body>
+</html>
