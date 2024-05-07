@@ -1,0 +1,89 @@
+main {
+  background-color: var(--first-background-color);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-family: kanit, sans-serif;
+}
+
+form {
+  border: 2px solid var(--second-background-color);
+  background-color: var(--hover-text-color);
+  padding: 10px;
+  border-radius: 5px;
+  width: 35vw;
+  position: relative;
+}
+
+.form-container {
+  width: 85%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group input {
+  padding: 13px;
+  margin: 10px 0px;
+  border-radius: 10px;
+  border: 1px solid var(--second-background-color);
+  font-family: kanit, sans-serif;
+  width: 100%;
+  font-size: 15px;
+}
+
+input[type='submit'] {
+  margin: 25px 0px 10px 0px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--second-background-color);
+  width: 100%;
+  font-size: 20px;
+  background-color: var(--second-background-color);
+  color: var(--hover-text-color);
+}
+
+input[type='submit']:hover {
+  border: 1px solid var(--first-background-color);
+  background-color: var(--first-background-color);
+  color: var(--second-background-color);
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  form {
+    width: 50vw;
+    height: 50vh;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 740px) {
+  main {
+    gap: 25px;
+  }
+
+  form {
+    width: 60vw;
+    height: 50vh;
+  }
+
+  .form-group input {
+    padding: 10px;
+    margin: 9px 0px;
+    font-size: 12px;
+  }
+}

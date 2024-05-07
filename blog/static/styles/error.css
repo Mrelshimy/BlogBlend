@@ -1,0 +1,49 @@
+.head {
+  font-family: kanit, sans-serif;
+  background-color: var(--first-background-color);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul li {
+  display: inline-block;
+  margin-right: 40px;
+  font-size: x-large;
+}
+
+.navbar ul li:hover {
+  color: var(--hover-text-color);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+
+main img {
+  width: 50%;
+}
+
+main h1 {
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+main p {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+.error-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
