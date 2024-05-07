@@ -84,7 +84,7 @@ def account():
             avatar_path = app.root_path + '/static/images/' + current_user.avatar
             if os.path.exists(avatar_path) and current_user.avatar != 'defaulte_profile.png':
                 os.remove(avatar_path)
-            current_user.avatar = save_picture(form.image.data, 150, 150)
+            current_user.avatar = save_picture(form.image.data, 350, 350)
         db.session.commit()
         return redirect(url_for('main_bp.home'))
     elif request.method == 'GET':
