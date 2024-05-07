@@ -82,7 +82,7 @@ def account():
         current_user.bio = form.bio.data
         if form.image.data:
             avatar_path = app.root_path + '/static/images/' + current_user.avatar
-            if os.path.exists(avatar_path):
+            if os.path.exists(avatar_path) and current_user.avatar != 'defaulte_profile.png':
                 os.remove(avatar_path)
             current_user.avatar = save_picture(form.image.data, 150, 150)
         db.session.commit()

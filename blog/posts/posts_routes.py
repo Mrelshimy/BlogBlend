@@ -67,7 +67,7 @@ def update_post(post_id):
     if form.validate_on_submit():
         if form.post_image.data:
             cover_path = app.root_path + '/static/images/' + post.cover
-            if os.path.exists(cover_path):
+            if os.path.exists(cover_path) and post.cover != 'default_cover.png':
                 os.remove(cover_path)
             cover = save_picture(form.post_image.data, 800, 600)
             post.cover = cover
@@ -83,7 +83,7 @@ def update_post(post_id):
     form.title.data = post.title
     # form.tags.data = ' '.join([tag.name for tag in post.tags])
     # tags = post.tags
-    return render_template('new_post.html', title='post', form=form)
+    return render_template('new_post.html', title='Update post', form=form)
 
 
 @posts_bp.route('/<int:post_id>/delete')
