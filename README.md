@@ -22,6 +22,19 @@ pip install -r requirements.txt
 python run.py
 ```
 
-## Configuration
-You can configure the app by editing the `config.py` file.
+## Contributing
 
+Contributions are welcome! If you would like to contribute to BlogBlend, please follow these guidelines:
+
+1. Fork the repository on GitHub.
+2. Create a new branch from the `main` branch for your feature or bug fix.
+3. Make your changes and ensure that the code passes all tests.
+4. Commit your changes with descriptive commit messages.
+5. Push your changes to your fork on GitHub.
+6. Submit a pull request to the `main` branch of the original repository.
+
+
+## Contributers
+Mohamed Raafat - https://github.com/Mrelshimy
+Nour Eldean Elkhateab - https://github.com/nour-nono
+Sameh ElGazzar - https://github.com/samehelgazar95
