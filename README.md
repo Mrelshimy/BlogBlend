@@ -35,6 +35,6 @@ Contributions are welcome! If you would like to contribute to BlogBlend, please 
 
 
 ## Contributers
-Mohamed Raafat - https://github.com/Mrelshimy
-Nour Eldean Elkhateab - https://github.com/nour-nono
+Mohamed Raafat - https://github.com/Mrelshimy<br>
+Nour Eldean Elkhateab - https://github.com/nour-nono<br>
 Sameh ElGazzar - https://github.com/samehelgazar95
