@@ -14,6 +14,7 @@ CheckList Done:
     PUT/PATCH (Update a user)
 """
 
+
 # GET ALL USERS
 # http://127.0.0.1:5000/blog/api/v1/users/
 @views_bp.route('/users', methods=['GET'], strict_slashes=False)
@@ -78,7 +79,8 @@ def edit_user(user_id):
 
 # DELETE A USER
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>
-@views_bp.route('/users/<int:user_id>', methods=['DELETE'], strict_slashes=False)
+@views_bp.route('/users/<int:user_id>',
+                methods=['DELETE'], strict_slashes=False)
 def delete_user(user_id):
     """Delete a user with id"""
     with app.app_context():

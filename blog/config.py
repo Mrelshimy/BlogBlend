@@ -1,7 +1,17 @@
 import os
 
 
+# Create a Config class
 class Config:
-    SQLALCHEMY_DATABASE_URI = f'mysql://{os.environ["DB_USER"]}:{os.environ["DB_PASS"]}@{os.environ["DB_HOST"]}/{os.environ["DB_NAME"]}'
+    """
+    Set the configuration variables for the Flask application
+    """
+    SQLALCHEMY_DATABASE_URI = f'mysql://{os.environ["DB_USER"]}:\
+{os.environ["DB_PASS"]}\
+@{os.environ["DB_HOST"]}/{os.environ["DB_NAME"]}'
     SECRET_KEY = os.urandom(32)
-    # SECRET_KEY = os.environ['SECRET_KEY']
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.environ.get('EMAIL_USER')
+    MAIL_PASSWORD = os.environ.get('EMAIL_PASS')

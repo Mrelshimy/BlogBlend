@@ -2,7 +2,7 @@ from flask import jsonify, request, abort
 from sqlalchemy_serializer import SerializerMixin
 from blog.api.v1.views import views_bp
 from blog import db, app
-from blog.models.models import Post, User#, Tag
+from blog.models.models import Post, User
 import secrets
 from PIL import Image
 import os
@@ -45,7 +45,8 @@ def get_post(post_id):
 
 # GET POSTS BY user_id
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>/posts
-@views_bp.route('/users/<int:user_id>/posts', methods=['GET'], strict_slashes=False)
+@views_bp.route('/users/<int:user_id>/posts',
+                methods=['GET'], strict_slashes=False)
 def get_posts_of_user(user_id):
     """Retrieve posts of specific user"""
     with app.app_context():
@@ -68,9 +69,11 @@ def save_picture(form_picture, w, h):
     i.save(picture_path)
     return picture_fn
 
+
 # POST a POST BY user_id
 # http://127.0.0.1:5000/blog/api/v1/users/<user_id>/posts
-@views_bp.route('/users/<int:user_id>/posts', methods=['POST'], strict_slashes=False)
+@views_bp.route('/users/<int:user_id>/posts',
+                methods=['POST'], strict_slashes=False)
 def post_a_post(user_id):
     with app.app_context():
         user = db.get_or_404(User, user_id)
@@ -79,7 +82,8 @@ def post_a_post(user_id):
             abort(400, "title is missing")
         if 'content' not in data.keys():
             abort(400, "content is missing")
-        post = Post(user_id=user_id, title=data.get('title'), content=data.get('content'))
+        post = Post(user_id=user_id, title=data.get('title'),
+                    content=data.get('content'))
 
         # HANDLE COVER
         if 'image' not in request.files:
@@ -103,7 +107,8 @@ def post_a_post(user_id):
 
 # PUT a POST BY post_id
 # http://127.0.0.1:5000/blog/api/v1/posts/<post_id>
-@views_bp.route('/posts/<int:post_id>', methods=['PUT'], strict_slashes=False)
+@views_bp.route('/posts/<int:post_id>',
+                methods=['PUT'], strict_slashes=False)
 def edit_post(post_id):
     with app.app_context():
         if request.is_json:
@@ -121,7 +126,8 @@ def edit_post(post_id):
 
 # DELETE a POST BY post_id
 # http://127.0.0.1:5000/blog/api/v1/posts/<post_id>
-@views_bp.route('/posts/<int:post_id>', methods=['DELETE'], strict_slashes=False)
+@views_bp.route('/posts/<int:post_id>',
+                methods=['DELETE'], strict_slashes=False)
 def delete_post(post_id):
     with app.app_context():
         post = db.get_or_404(Post, post_id)
