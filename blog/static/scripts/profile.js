@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  let titles_ids = {};
-  let user = {};
+  const titlesId = {};
+  // let user = {};
   const months = [
     'January',
     'February',
@@ -21,14 +21,14 @@ $(document).ready(function () {
   }
 
   // Fetching the users
-  $.ajax({
-    method: 'GET',
-    url: `http://localhost:5001/blog/api/v1/users/${currentUser}`,
-    contentType: 'application/json',
-    success: function (data) {
-      user = { name: data.username, picture: data.avatar };
-    },
-  });
+  // $.ajax({
+  //   method: 'GET',
+  //   url: `http://localhost:5001/blog/api/v1/users/${currentUser}`,
+  //   contentType: 'application/json',
+  //   success: function (data) {
+  //     user = { name: data.username, picture: data.avatar };
+  //   },
+  // });
 
   // Fetching the posts and append them to posts-section
   // Just needed to add tags
@@ -38,15 +38,15 @@ $(document).ready(function () {
     contentType: 'application/json',
     success: function (data) {
       data.forEach((post) => {
-        titles_ids[post.title.toLowerCase()] = post.id;
+        titlesId[post.title.toLowerCase()] = post.id;
         if (post.tag === undefined) {
           post.tag = '';
         }
 
-        const post_date = new Date(post.created_at);
-        const year = post_date.getFullYear();
-        const month = months[post_date.getMonth()];
-        const day = post_date.getDate();
+        const postDate = new Date(post.created_at);
+        const year = postDate.getFullYear();
+        const month = months[postDate.getMonth()];
+        const day = postDate.getDate();
 
         $('.posts-section').append(
           `<article class="post">
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
   $(document).on('click', '.delete-btn', function () {
     postId =
-      titles_ids[$(this).parent().parent().find('h2').text().toLowerCase()];
+      titlesId[$(this).parent().parent().find('h2').text().toLowerCase()];
 
     $.ajax({
       method: 'DELETE',
