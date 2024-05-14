@@ -122,6 +122,6 @@ def delete_post(post_id):
         cover_path = app.root_path+'/static/images/'+post.cover
         if os.path.exists(cover_path):
             os.remove(cover_path)
-        db.session.delete(post)
-        db.session.commit()
+    db.session.delete(post)
+    db.session.commit()
     return redirect(url_for('main_bp.home'))

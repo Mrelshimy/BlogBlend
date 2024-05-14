@@ -32,6 +32,23 @@ $(document).ready(function () {
     }
   });
 
+/**
+ * This function takes a string as input, splits it into lines,
+ * then joins the lines with HTML line breaks, and returns the result.
+ *
+ * @param {string} content - The input string.
+ * @returns {string} The input string with HTML line breaks inserted.
+ */
+function addLineBreaks(content) {
+  // Split the input string into lines at each newline character.
+  let lines = content.split('\n');
+
+  // Join the lines with HTML line breaks.
+  let newContent = lines.join('<br>');
+
+  // Return the resulting string.
+  return newContent;
+}
   /**
    * Fetches post data from the server and appends it to the DOM.
    */
@@ -72,7 +89,7 @@ $(document).ready(function () {
           </div>
 
           <div class="content">
-            <p>${data.content}</p>
+            <p>${addLineBreaks(data.content)}</p>
           </div>
           `
       );

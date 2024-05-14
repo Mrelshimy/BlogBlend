@@ -131,6 +131,9 @@ def edit_post(post_id):
 def delete_post(post_id):
     with app.app_context():
         post = db.get_or_404(Post, post_id)
+        cover_path = app.root_path + '/static/images/' + post.cover
+        if os.path.exists(cover_path) and post.cover != 'default_cover.png':
+            os.remove(cover_path)
         db.session.delete(post)
         db.session.commit()
         return jsonify({'message': 'Post deleted successfully'}), 200
