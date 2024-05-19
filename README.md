@@ -1,7 +1,9 @@
 # BlogBlend
+
 BlogBlend is a simple blog engine written in Python using Flask. It is designed to be easy to use and easy to deploy. It is also designed to be easily customizable and extendable.
 
 ## Features
+
 - Simple and easy to use
 - Easy to deploy
 - Customizable and extendable
@@ -10,7 +12,12 @@ BlogBlend is a simple blog engine written in Python using Flask. It is designed 
 - Responsive design
 - SEO friendly
 
+## Static Landing Page
+
+    https://mrelshimy.github.io/BlogBlend/
+
 ## Installation
+
 1. Clone the repository
 2. Install the dependencies
 3. Run the app
@@ -33,8 +40,8 @@ Contributions are welcome! If you would like to contribute to BlogBlend, please 
 5. Push your changes to your fork on GitHub.
 6. Submit a pull request to the `main` branch of the original repository.
 
-
 ## Contributers
+
 Mohamed Raafat - https://github.com/Mrelshimy<br>
 Nour Eldean Elkhateab - https://github.com/nour-nono<br>
 Sameh ElGazzar - https://github.com/samehelgazar95
